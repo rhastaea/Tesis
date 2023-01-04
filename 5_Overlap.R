@@ -133,16 +133,16 @@ ggdraw(plot_color) +
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 6.5),
+               xmin = c(18,0), xmax = c(24, 8),
                ymin = 0, ymax = 0.1, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.2, fill = "grey25") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 19,
+               xmin = 6, xmax = 20,
                ymin = 0, ymax = 0.1, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.2, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.525, y = 0.68, # Coordenadas en x y del sol
+   draw_image(sun, x = 0.561, y = 0.68, # Coordenadas en x y del sol
               width = 0.07, height = 0.06) + # Altura y ancho
    draw_image(moon, x = 0.22, y = 0.68, # Coordenadas en x y de la luna
               width = 0.06, height = 0.05) + # Altura y ancho
