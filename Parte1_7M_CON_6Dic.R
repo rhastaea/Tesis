@@ -233,7 +233,7 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(canidae), x = 0.21, y = 0.79,
+   draw_image(image_flop(canidae), x = 0.217, y = 0.8,
               width = 0.13, height = 0.13) +
    draw_text("n = 124", x = 0.8, y = 0.15, size = 12)
 
@@ -324,7 +324,7 @@ ymax <- 110
 ggdraw(plot_color) +
    draw_image(sun, x = 0.508, y = 0.20, # Coordenadas en x y del sol
               width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
+   draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
    draw_image(image_flop(hydrochoerus), x = 0.235, y = 0.795,
@@ -421,6 +421,6 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(cingulata), x = 0.21, y = 0.79,
+   draw_image(image_flop(cingulata), x = 0.21, y = 0.8,
               width = 0.13, height = 0.13) +
    draw_text("n = 139", x = 0.8, y = 0.15, size = 12)
