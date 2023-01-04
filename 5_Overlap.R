@@ -53,6 +53,8 @@ activityOverlap (recordTable   = datacam_delta60,
                                      speciesB_for_activity))
 
 #### Histograma radial con superposición ####
+sun <- readPNG("sun.png")
+moon <- readPNG("moon.png")
 
 registers <- datacam #ACÁ HAY QUE CAMBIAR EL DATACAM QUE QUIERO
 
@@ -66,41 +68,83 @@ especie2 <- registers %>% filter(Species == "mazama")
 especies = rbind(especie2,especie1)
 
 (plot_blanco <- ggplot(especies, aes(x = decimal, fill = Species)) + 
-      geom_density(breaks = seq(0, 24),
+      geom_density(#breaks = seq(0, 24),
                   #aes(y = stat(count / sum(count))),
                   position = "identity", #Para que superponga las especies
                   colour = "black", 
-                  alpha = 0.5, #transparencia
-                  size = 0.3,
-                  ylim = c(0,0.1)) +
+                  alpha = 0.6, #transparencia
+                  size = 0.3) +
+                  #ylim = c(0,0.1)) +
       scale_x_continuous("", limits = c(0, 24), 
                          breaks = seq(0, 24), 
                          labels = seq(0, 24)) +
       scale_fill_manual(values = c("blue", "red")) +
       labs(title = "Registros de *Axis axis* y *Mazama Gouarzoubira*",
-           y = "Número de registros") +
+           y = "Densidad de registros") +
            #subtitle = "Durante los muestreos de abril 2017 y 2018") + #FECHA MUESTREOS
       #coord_polar(start = 0) +
-      theme_minimal() + # Tipo de tema para quitar el gris de fondo
-      theme(text = element_text(size = 13, face = "bold"), # Tamaño y letra en negrilla
+      theme_bw() + 
+      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
-            plot.title = element_markdown()) # Para  hacer la especie en itálica
-)
+            plot.title = element_markdown(size = 25, hjust = 0.5)))
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
                xmin = c(18,0), xmax = c(24, 6.5),
-               ymin = 0, ymax = 2000, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "grey25") + 
+               ymin = 0, ymax = 0.1, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.2, fill = "grey25") + 
       annotate("rect", #Sombreado amarillo
                xmin = 6, xmax = 19,
-               ymin = 0, ymax = 2000, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "#FFD819"))
+               ymin = 0, ymax = 0.1, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.2, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.45, y = 0.20, # Coordenadas en x y del sol
+   draw_image(sun, x = 0.45, y = 0.78, # Coordenadas en x y del sol
               width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.45, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) # Como la imágen de la luna es algo más grande la escalamos para que iguale al sol
+   draw_image(moon, x = 0.2, y = 0.78, # Coordenadas en x y de la luna
+              width = 0.06, height = 0.05) + # Altura y ancho
+   draw_image(moon, x = 0.7, y = 0.78, # Coordenadas en x y de la luna
+            width = 0.06, height = 0.05) # Altura y ancho
+
+########################### ESTOY PROBANDO MOVER LA LEYENDA ####################
+(plot_blanco <- ggplot(especies, aes(x = decimal, fill = Species)) + 
+    geom_density(
+       position = "identity", #Para que superponga las especies
+       colour = "black", 
+       alpha = 0.6, #transparencia
+       size = 0.3) +
+    scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
+    scale_fill_manual(values = c("blue", "red"),
+                      labels = c('Axis', "Mazama")) +
+    labs(title = "Registros de *Axis axis* y *Mazama Gouarzoubira*",
+         y = "Densidad de registros",
+         fill = "Género") +
+    #subtitle = "Durante los muestreos de abril 2017 y 2018") + #FECHA MUESTREOS
+    #coord_polar(start = 0) +
+    theme_bw() + 
+    theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
+          axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
+          axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
+          plot.title = element_markdown(size = 25, hjust = 0.5),
+          legend.position = c(0.99, 0.99),
+          legend.justification = c("right", "top"),
+          legend.title.align = 0.5))
+
+(plot_color <- plot_blanco +
+      annotate("rect", #Sombreado gris
+               xmin = c(18,0), xmax = c(24, 6.5),
+               ymin = 0, ymax = 0.1, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.2, fill = "grey25") + 
+      annotate("rect", #Sombreado amarillo
+               xmin = 6, xmax = 19,
+               ymin = 0, ymax = 0.1, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.2, fill = "#FFD819"))
+
+ggdraw(plot_color) +
+   draw_image(sun, x = 0.525, y = 0.68, # Coordenadas en x y del sol
+              width = 0.07, height = 0.06) + # Altura y ancho
+   draw_image(moon, x = 0.22, y = 0.68, # Coordenadas en x y de la luna
+              width = 0.06, height = 0.05) + # Altura y ancho
+   draw_image(moon, x = 0.86, y = 0.68, # Coordenadas en x y de la luna
+              width = 0.06, height = 0.05) # Altura y ancho
