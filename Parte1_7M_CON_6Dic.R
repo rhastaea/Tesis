@@ -48,195 +48,6 @@ registers$decimal <- sapply(strsplit(registers$Time,":"), function(x){
 
 ## Filtramos la especie que nos interesa
 
-#### LEOPARDUS ####
-especie1 <- registers %>% 
-   filter(Species == "leopardus") #ESPECIE QUE QUIERO
-
-ymax <- 20
-
-(plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
-      geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
-                     fill = "steelblue4",
-                     colour = "black", 
-                     size = 0.4) +
-      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
-      scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Leopardus geoffroyi*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
-      coord_polar(start = 0) +
-      theme_bw() + # Tipo de tema para quitar el gris de fondo
-      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
-            axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
-            axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
-            plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
-            panel.grid = element_line(color = "grey")))
-
-(plot_color <- plot_blanco +
-      annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
-               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "#696969") + 
-      annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
-               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "#FFD819"))
-
-ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(image_flop(leopardus), x = 0.245, y = 0.8,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 42", x = 0.77, y = 0.15, size = 12)
-   
-#### RHEA ####
-
-especie1 <- registers %>% 
-   filter(Species == "rhea") #ESPECIE QUE QUIERO
-
-ymax <- 20
-
-(plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
-      geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
-                     fill = "steelblue4",
-                     colour = "black", 
-                     size = 0.5) +
-      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
-      scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Rhea americana*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
-      coord_polar(start = 0) +
-      theme_bw() + # Tipo de tema para quitar el gris de fondo
-      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
-            axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
-            axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
-            plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
-            panel.grid = element_line(color = "grey")))
-
-(plot_color <- plot_blanco +
-      annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
-               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "696969") + 
-      annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
-               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "#FFD819"))
-
-ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(rhea, x = 0.21, y = 0.782,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 147", x = 0.8, y = 0.15, size = 12)
-
-#### SUS ####
-especie1 <- registers %>% 
-   filter(Species == "sus") #ESPECIE QUE QUIERO
-
-ymax <- 20
-
-(plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
-      geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
-                     fill = "steelblue4",
-                     colour = "black", 
-                     size = 0.3) +
-      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
-      scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Sus scrofa*", 
-           #subtitle = "En los muestreos de jl17 y jl18",
-           y = "Número de registros") +
-      coord_polar(start = 0) +
-      theme_bw() + # Tipo de tema para quitar el gris de fondo
-      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
-            axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
-            axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
-            plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
-            panel.grid = element_line(color = "grey")))
-
-(plot_color <- plot_blanco +
-      annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
-               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "#696969") + 
-      annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
-               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "#FFD819"))
-
-ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(image_flop(sus), x = 0.23, y = 0.79,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 85", x = 0.8, y = 0.15, size = 12)
-
-#### CANIDAE ####
-especie1 <- registers %>% 
-   filter(Species == "canidae") #ESPECIE QUE QUIERO
-
-ymax <- 20
-
-(plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
-      geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
-                     fill = "steelblue4",
-                     colour = "black", 
-                     size = 0.3) +
-      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
-      scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Canidae*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
-      coord_polar(start = 0) +
-      theme_bw() + # Tipo de tema para quitar el gris de fondo
-      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
-            axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
-            axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
-            plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
-            panel.grid = element_line(color = "grey")))
-
-(plot_color <- plot_blanco +
-      annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
-               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "#696969") + 
-      annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
-               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "#FFD819"))
-
-ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(image_flop(canidae), x = 0.217, y = 0.8,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 124", x = 0.8, y = 0.15, size = 12)
-
 #### AXIS ####
 especie1 <- registers %>% 
    filter(Species == "axis") #ESPECIE QUE QUIERO
@@ -331,9 +142,9 @@ ggdraw(plot_color) +
               width = 0.13, height = 0.13) +
    draw_text("n = 991", x = 0.8, y = 0.15, size = 12)
 
-#### MAZAMA ####
+#### CANIDAE ####
 especie1 <- registers %>% 
-   filter(Species == "mazama") #ESPECIE QUE QUIERO
+   filter(Species == "canidae") #ESPECIE QUE QUIERO
 
 ymax <- 20
 
@@ -345,7 +156,7 @@ ymax <- 20
                      size = 0.3) +
       ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Mazama gouazoubira*", 
+      labs(title = "Registros de *Canidae*", 
            #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
            y = "Número de registros") +
       coord_polar(start = 0) +
@@ -353,7 +164,7 @@ ymax <- 20
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
-            plot.title = element_markdown(size = 25, hjust = 0.3),
+            plot.title = element_markdown(size = 25, hjust = 0.5),
             # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
             # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
@@ -371,12 +182,107 @@ ymax <- 20
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
               width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
+   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(mazama), x = 0.21, y = 0.79,
+   draw_image(image_flop(canidae), x = 0.217, y = 0.8,
               width = 0.13, height = 0.13) +
-   draw_text("n = 47", x = 0.8, y = 0.15, size = 12)
+   draw_text("n = 124", x = 0.8, y = 0.15, size = 12)
+
+#### SUS ####
+especie1 <- registers %>% 
+   filter(Species == "sus") #ESPECIE QUE QUIERO
+
+ymax <- 20
+
+(plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
+      geom_histogram(breaks = seq(0, 24),
+                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
+                     fill = "steelblue4",
+                     colour = "black", 
+                     size = 0.3) +
+      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
+      scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
+      labs(title = "Registros de *Sus scrofa*", 
+           #subtitle = "En los muestreos de jl17 y jl18",
+           y = "Número de registros") +
+      coord_polar(start = 0) +
+      theme_bw() + # Tipo de tema para quitar el gris de fondo
+      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
+            axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
+            axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
+            plot.title = element_markdown(size = 25, hjust = 0.5),
+            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
+            # panel.background = element_rect(fill = "#f4f0cb"),
+            panel.grid = element_line(color = "grey")))
+
+(plot_color <- plot_blanco +
+      annotate("rect", #Sombreado gris
+               xmin = c(18,0), xmax = c(24, 8),
+               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.3, fill = "#696969") + 
+      annotate("rect", #Sombreado amarillo
+               xmin = 6, xmax = 20,
+               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.3, fill = "#FFD819"))
+
+ggdraw(plot_color) +
+   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
+              width = 0.07, height = 0.06) + # Altura y ancho
+   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
+              width = 0.08, height = 0.07, # Altura y ancho
+              scale = 0.75) + 
+   draw_image(image_flop(sus), x = 0.23, y = 0.79,
+              width = 0.13, height = 0.13) +
+   draw_text("n = 85", x = 0.8, y = 0.15, size = 12)
+
+#### RHEA ####
+
+especie1 <- registers %>% 
+   filter(Species == "rhea") #ESPECIE QUE QUIERO
+
+ymax <- 20
+
+(plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
+      geom_histogram(breaks = seq(0, 24),
+                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
+                     fill = "steelblue4",
+                     colour = "black", 
+                     size = 0.5) +
+      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
+      scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
+      labs(title = "Registros de *Rhea americana*", 
+           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
+           y = "Número de registros") +
+      coord_polar(start = 0) +
+      theme_bw() + # Tipo de tema para quitar el gris de fondo
+      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
+            axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
+            axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
+            plot.title = element_markdown(size = 25, hjust = 0.5),
+            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
+            # panel.background = element_rect(fill = "#f4f0cb"),
+            panel.grid = element_line(color = "grey")))
+
+(plot_color <- plot_blanco +
+      annotate("rect", #Sombreado gris
+               xmin = c(18,0), xmax = c(24, 8),
+               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.3, fill = "696969") + 
+      annotate("rect", #Sombreado amarillo
+               xmin = 6, xmax = 20,
+               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.3, fill = "#FFD819"))
+
+ggdraw(plot_color) +
+   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
+              width = 0.07, height = 0.06) + # Altura y ancho
+   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
+              width = 0.08, height = 0.07, # Altura y ancho
+              scale = 0.75) + 
+   draw_image(rhea, x = 0.21, y = 0.782,
+              width = 0.13, height = 0.13) +
+   draw_text("n = 147", x = 0.8, y = 0.15, size = 12)
 
 #### CINGULATA ####
 especie1 <- registers %>% 
@@ -424,3 +330,98 @@ ggdraw(plot_color) +
    draw_image(image_flop(cingulata), x = 0.21, y = 0.8,
               width = 0.13, height = 0.13) +
    draw_text("n = 139", x = 0.8, y = 0.15, size = 12)
+
+#### MAZAMA ####
+especie1 <- registers %>% 
+   filter(Species == "mazama") #ESPECIE QUE QUIERO
+
+ymax <- 20
+
+(plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
+      geom_histogram(breaks = seq(0, 24),
+                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
+                     fill = "steelblue4",
+                     colour = "black", 
+                     size = 0.3) +
+      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
+      scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
+      labs(title = "Registros de *Mazama gouazoubira*", 
+           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
+           y = "Número de registros") +
+      coord_polar(start = 0) +
+      theme_bw() + # Tipo de tema para quitar el gris de fondo
+      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
+            axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
+            axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
+            plot.title = element_markdown(size = 25, hjust = 0.3),
+            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
+            # panel.background = element_rect(fill = "#f4f0cb"),
+            panel.grid = element_line(color = "grey")))
+
+(plot_color <- plot_blanco +
+      annotate("rect", #Sombreado gris
+               xmin = c(18,0), xmax = c(24, 8),
+               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.3, fill = "#696969") + 
+      annotate("rect", #Sombreado amarillo
+               xmin = 6, xmax = 20,
+               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.3, fill = "#FFD819"))
+
+ggdraw(plot_color) +
+   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
+              width = 0.07, height = 0.06) + # Altura y ancho
+   draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
+              width = 0.08, height = 0.07, # Altura y ancho
+              scale = 0.75) + 
+   draw_image(image_flop(mazama), x = 0.21, y = 0.79,
+              width = 0.13, height = 0.13) +
+   draw_text("n = 47", x = 0.8, y = 0.15, size = 12)
+
+
+#### LEOPARDUS ####
+especie1 <- registers %>% 
+   filter(Species == "leopardus") #ESPECIE QUE QUIERO
+
+ymax <- 20
+
+(plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
+      geom_histogram(breaks = seq(0, 24),
+                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
+                     fill = "steelblue4",
+                     colour = "black", 
+                     size = 0.4) +
+      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
+      scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
+      labs(title = "Registros de *Leopardus geoffroyi*", 
+           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
+           y = "Número de registros") +
+      coord_polar(start = 0) +
+      theme_bw() + # Tipo de tema para quitar el gris de fondo
+      theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
+            axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
+            axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
+            plot.title = element_markdown(size = 25, hjust = 0.5),
+            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
+            # panel.background = element_rect(fill = "#f4f0cb"),
+            panel.grid = element_line(color = "grey")))
+
+(plot_color <- plot_blanco +
+      annotate("rect", #Sombreado gris
+               xmin = c(18,0), xmax = c(24, 8),
+               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.3, fill = "#696969") + 
+      annotate("rect", #Sombreado amarillo
+               xmin = 6, xmax = 20,
+               ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
+               alpha = 0.3, fill = "#FFD819"))
+
+ggdraw(plot_color) +
+   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
+              width = 0.07, height = 0.06) + # Altura y ancho
+   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
+              width = 0.08, height = 0.07, # Altura y ancho
+              scale = 0.75) + 
+   draw_image(image_flop(leopardus), x = 0.245, y = 0.8,
+              width = 0.13, height = 0.13) +
+   draw_text("n = 42", x = 0.77, y = 0.15, size = 12)
