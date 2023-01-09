@@ -31,13 +31,13 @@ datacam_delta60$DateTimeOriginal <- as.factor(datacam_delta60$DateTimeOriginal)
 sun <- readPNG("sun.png")
 moon <- readPNG("moon.png")
 rhea <- readPNG("rhea.png")
-hydrochoerus <- image_read("https://images.phylopic.org/images/9c234021-ce53-45d9-8fdd-b0ca3115a451/raster/1024x596.png?build=103")
-sus <- image_read("http://phylopic.org/assets/images/submissions/3d8acaf6-4355-491e-8e86-4a411b53b98b.128.png")
-cingulata <- image_read("https://images.phylopic.org/images/5d59b5ce-c1dd-40f6-b295-8d2629b9775e/raster/1024x493.png?build=103")
-mazama <- image_read("http://phylopic.org/assets/images/submissions/b5f40112-0cb8-4994-aa70-28ac97ccb83f.128.png")
 axis <- readPNG("axis.png")
-canidae <- image_read("http://phylopic.org/assets/images/submissions/d67d3bf6-3509-4ab6-819a-cd409985347e.128.png")
-leopardus <- image_read("http://phylopic.org/assets/images/submissions/cbc3f93e-0ce3-4e3b-871d-6ac688ed8810.128.png")
+hydrochoerus <- image_flop(image_read("https://images.phylopic.org/images/9c234021-ce53-45d9-8fdd-b0ca3115a451/raster/1024x596.png?build=103"))
+sus <- image_flop(image_read("http://phylopic.org/assets/images/submissions/3d8acaf6-4355-491e-8e86-4a411b53b98b.128.png"))
+cingulata <- image_flop(image_read("https://images.phylopic.org/images/5d59b5ce-c1dd-40f6-b295-8d2629b9775e/raster/1024x493.png?build=103"))
+mazama <- image_flop(image_read("http://phylopic.org/assets/images/submissions/b5f40112-0cb8-4994-aa70-28ac97ccb83f.128.png"))
+canidae <- image_flop(image_read("http://phylopic.org/assets/images/submissions/d67d3bf6-3509-4ab6-819a-cd409985347e.128.png"))
+leopardus <- image_flop(image_read("http://phylopic.org/assets/images/submissions/cbc3f93e-0ce3-4e3b-871d-6ac688ed8810.128.png"))
 
 #### Hist_rad ####
 registers <- datacam_delta60 
@@ -138,7 +138,7 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(hydrochoerus), x = 0.235, y = 0.795,
+   draw_image(hydrochoerus, x = 0.235, y = 0.795,
               width = 0.13, height = 0.13) +
    draw_text("n = 991", x = 0.8, y = 0.15, size = 12)
 
@@ -185,7 +185,7 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(canidae), x = 0.217, y = 0.8,
+   draw_image(canidae, x = 0.217, y = 0.8,
               width = 0.13, height = 0.13) +
    draw_text("n = 124", x = 0.8, y = 0.15, size = 12)
 
@@ -232,7 +232,7 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(sus), x = 0.23, y = 0.79,
+   draw_image(sus, x = 0.23, y = 0.79,
               width = 0.13, height = 0.13) +
    draw_text("n = 85", x = 0.8, y = 0.15, size = 12)
 
@@ -327,7 +327,7 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(cingulata), x = 0.21, y = 0.8,
+   draw_image(cingulata, x = 0.21, y = 0.8,
               width = 0.13, height = 0.13) +
    draw_text("n = 139", x = 0.8, y = 0.15, size = 12)
 
@@ -374,7 +374,7 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(mazama), x = 0.21, y = 0.79,
+   draw_image(mazama, x = 0.21, y = 0.79,
               width = 0.13, height = 0.13) +
    draw_text("n = 47", x = 0.8, y = 0.15, size = 12)
 
@@ -422,6 +422,6 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(leopardus), x = 0.245, y = 0.8,
+   draw_image(leopardus, x = 0.245, y = 0.8,
               width = 0.13, height = 0.13) +
    draw_text("n = 42", x = 0.77, y = 0.15, size = 12)

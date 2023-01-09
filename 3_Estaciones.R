@@ -93,11 +93,11 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.41, y = 0.7, 
               width = 0.08, height = 0.07,
               scale = 0.75) + 
-   draw_image(axis, x = 0.21, y = 0.75,
+   draw_image(axis, x = 0.24, y = 0.75,
               width = 0.13, height = 0.13) +
-   draw_text("n = 442", x = 0.8, y = 0.15, size = 12)
+   draw_text("n = 442", x = 0.758, y = 0.15, size = 12)
 
-s#### Ab - Hydrochoerus ####
+#### Ab - Hydrochoerus ####
 especie1 <- registers_abril %>% 
    filter(Species == "hydrochoerus") #ESPECIE QUE QUIERO
 
@@ -183,9 +183,9 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.49, y = 0.725, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(canidae), x = 0.22, y = 0.752,
+   draw_image(image_flop(canidae), x = 0.25, y = 0.752,
               width = 0.13, height = 0.13) +
-   draw_text("n = 44", x = 0.8, y = 0.15, size = 12)
+   draw_text("n = 44", x = 0.753, y = 0.15, size = 12)
 
 #### Ab - Sus ####
 especie1 <- registers_abril %>% 
@@ -228,9 +228,9 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.495, y = 0.73, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(sus), x = 0.23, y = 0.77,
+   draw_image(image_flop(sus), x = 0.25, y = 0.77,
               width = 0.13, height = 0.13) +
-   draw_text("n = 33", x = 0.8, y = 0.15, size = 12)
+   draw_text("n = 33", x = 0.758, y = 0.15, size = 12)
 
 #### Ab - Rhea ####
 
@@ -276,20 +276,20 @@ ggdraw(plot_color) +
               scale = 0.75) + 
    draw_image(rhea, x = 0.23, y = 0.74,
               width = 0.13, height = 0.13) +
-   draw_text("n = 30", x = 0.8, y = 0.15, size = 12)
+   draw_text("n = 30", x = 0.76, y = 0.15, size = 12)
 
 #### Ab - Cingulata ####
 especie1 <- registers_abril %>% 
    filter(Species == "cingulata") #ESPECIE QUE QUIERO
 
-ymax <- 9
+ymax <- 10
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
-      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
+      scale_y_continuous(limits = c(0,ymax), breaks = seq(0, ymax, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Cingulata*", 
            subtitle = "En los muestreos de ab17 y ab18", #NOMBRE DE LA ESPECIE QUE QUIERO
@@ -319,22 +319,22 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.49, y = 0.73, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(cingulata), x = 0.23, y = 0.765,
+   draw_image(image_flop(cingulata), x = 0.25, y = 0.765,
               width = 0.13, height = 0.13) +
-   draw_text("n = 52", x = 0.8, y = 0.15, size = 12)
+   draw_text("n = 52", x = 0.76, y = 0.15, size = 12)
 
 #### Ab - Mazama ####
 especie1 <- registers_abril %>% 
    filter(Species == "mazama") #ESPECIE QUE QUIERO
 
-ymax <- 3
+ymax <- 10
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
-      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
+      scale_y_continuous(limits = c(0,ymax), breaks = seq(0, ymax, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Mazama gouazoubira*", 
            subtitle = "En los muestreos de ab17 y ab18", #NOMBRE DE LA ESPECIE QUE QUIERO
@@ -364,9 +364,9 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.49, y = 0.73, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(mazama), x = 0.225, y = 0.76,
+   draw_image(image_flop(mazama), x = 0.23, y = 0.76,
               width = 0.13, height = 0.13) +
-   draw_text("n = 12", x = 0.8, y = 0.15, size = 12)
+   draw_text("n = 12", x = 0.77, y = 0.15, size = 12)
 
 #### Ab - Leopardus ####
 especie1 <- registers_abril %>% 
@@ -409,9 +409,9 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.49, y = 0.7, # Coordenadas en x y de la luna
               width = 0.08, height = 0.07, # Altura y ancho
               scale = 0.75) + 
-   draw_image(image_flop(leopardus), x = 0.23, y = 0.76,
+   draw_image(image_flop(leopardus), x = 0.25, y = 0.76,
               width = 0.13, height = 0.13) +
-   draw_text("n = 13", x = 0.8, y = 0.15, size = 12)
+   draw_text("n = 13", x = 0.77, y = 0.15, size = 12)
 
 ###################################### JULIO ########
 
@@ -425,7 +425,7 @@ registers_julio$decimal <- sapply(strsplit(registers_julio$Time,":"), function(x
 especie1 <- registers_julio %>% 
    filter(Species == "axis") #ESPECIE QUE QUIERO
 
-ymax <- 43
+ymax <- 50
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -470,7 +470,7 @@ ggdraw(plot_color) +
 especie1 <- registers_julio %>% 
    filter(Species == "hydrochoerus") #ESPECIE QUE QUIERO
 
-ymax <- 46
+ymax <- 50
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -515,7 +515,7 @@ ggdraw(plot_color) +
 especie1 <- registers_julio %>% 
    filter(Species == "canidae") #ESPECIE QUE QUIERO
 
-ymax <- 7
+ymax <- 12
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -560,7 +560,7 @@ ggdraw(plot_color) +
 especie1 <- registers_julio %>% 
    filter(Species == "sus") #ESPECIE QUE QUIERO
 
-ymax <- 4
+ymax <- 12
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -606,7 +606,7 @@ ggdraw(plot_color) +
 especie1 <- registers_julio %>% 
    filter(Species == "rhea") #ESPECIE QUE QUIERO
 
-ymax <- 10
+ymax <- 12
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -651,7 +651,7 @@ ggdraw(plot_color) +
 especie1 <- registers_julio %>% 
    filter(Species == "cingulata") #ESPECIE QUE QUIERO
 
-ymax <- 11
+ymax <- 12
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -697,7 +697,7 @@ ggdraw(plot_color) +
 especie1 <- registers_julio %>% 
    filter(Species == "mazama") #ESPECIE QUE QUIERO
 
-ymax <- 2
+ymax <- 12
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -742,7 +742,7 @@ ggdraw(plot_color) +
 especie1 <- registers_julio %>% 
    filter(Species == "leopardus") #ESPECIE QUE QUIERO
 
-ymax <- 2
+ymax <- 12
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -795,7 +795,7 @@ registers_verano$decimal <- sapply(strsplit(registers_verano$Time,":"), function
 especie1 <- registers_verano %>% 
    filter(Species == "axis") #ESPECIE QUE QUIERO
 
-ymax <- 41
+ymax <- 50
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -840,7 +840,7 @@ ggdraw(plot_color) +
 especie1 <- registers_verano %>% 
    filter(Species == "hydrochoerus") #ESPECIE QUE QUIERO
 
-ymax <- 27
+ymax <- 50
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
