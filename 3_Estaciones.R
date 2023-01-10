@@ -1,7 +1,7 @@
 #### ANÁLISIS DE CÁMARAS TRAMPA ####
 rm(list = ls())
 
-library(camtrapR)
+# library(camtrapR)
 library(lubridate)
 library(overlap)
 library(readr)
@@ -79,11 +79,11 @@ ymax <- 42
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.217,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 7.383, xmax = 18.317,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -124,11 +124,11 @@ ymax <- 42
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.217,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 7.383, xmax = 18.317,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -169,11 +169,11 @@ ymax <- 10
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.217,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 7.383, xmax = 18.317,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -214,11 +214,11 @@ ymax <- 10
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.217,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 7.383, xmax = 18.317,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -260,11 +260,11 @@ ymax <- 10
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.217,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "696969") + 
+               alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 7.383, xmax = 18.317,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -305,11 +305,11 @@ ymax <- 10
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.217,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 7.383, xmax = 18.317,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -350,11 +350,11 @@ ymax <- 10
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.217,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 7.383, xmax = 18.317,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -395,11 +395,11 @@ ymax <- 10
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.217,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 7.383, xmax = 18.317,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -432,8 +432,8 @@ ymax <- 50
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
-      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
+      scale_y_continuous(limits = c(0,ymax), breaks = seq(0, ymax, by = 10)) +
       labs(title = "Registros de *Axis axis*", 
            subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
            y = "Número de registros") +
@@ -448,11 +448,11 @@ ymax <- 50
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.233,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 6.2, xmax = 19.083,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -493,11 +493,11 @@ ymax <- 50
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.233,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 6.2, xmax = 19.083,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -538,11 +538,11 @@ ymax <- 12
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.233,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 6.2, xmax = 19.083,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -583,11 +583,11 @@ ymax <- 12
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.233,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 6.2, xmax = 19.083,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -629,11 +629,11 @@ ymax <- 12
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.233,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
-               alpha = 0.3, fill = "696969") + 
+               alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 6.2, xmax = 19.083,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -675,11 +675,11 @@ ymax <- 12
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.233,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 6.2, xmax = 19.083,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -720,11 +720,11 @@ ymax <- 12
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.233,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 6.2, xmax = 19.083,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
@@ -765,11 +765,11 @@ ymax <- 12
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18,0), xmax = c(24, 8),
+               xmin = c(18.233,0), xmax = c(24, 7.767),
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6, xmax = 20,
+               xmin = 6.2, xmax = 19.083,
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
