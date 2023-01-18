@@ -28,13 +28,13 @@ datacam <- read.csv("datacam_muestreo_delta60.csv",
                     row.names = 1)
 datacam$DateTimeOriginal <- as.factor(datacam$DateTimeOriginal)
 
-datacam_abril <- datacam[datacam$Muestreo %in% c("ab17","ab18"),]
-datacam_julio <- datacam[datacam$Muestreo %in% c("jl17","jl18"),]
-datacam_verano <- datacam[datacam$Muestreo %in% c("nv17","fb18","di18"),]
+# datacam_abril <- datacam[datacam$Muestreo %in% c("ab17","ab18"),]
+# datacam_julio <- datacam[datacam$Muestreo %in% c("jl17","jl18"),]
+# datacam_verano <- datacam[datacam$Muestreo %in% c("nv17","fb18","di18"),]
 
-datacam_invierno
-datacam_otoño
-datacam_prive
+datacam_invierno <- datacam[datacam$Estacion %in% c("Invierno"),]
+datacam_otono <- datacam[datacam$Estacion %in% c("Otono"),]
+datacam_prive <- datacam[datacam$Estacion %in% c("Prive"),]
 
 ymax_AeH <- 50
 ymax_resto <- 12
@@ -42,6 +42,9 @@ ymax_resto <- 12
 #### PNGs ####
 sun <- readPNG("sun.png")
 moon <- readPNG("moon.png")
+copo <- readPNG("copo.png")
+flor <- readPNG("flor.png")
+hoja <- readPNG("hoja.png")
 rhea <- readPNG("rhea.png")
 axis <- readPNG("axis.png")
 hydrochoerus <- image_flop(image_read("https://images.phylopic.org/images/9c234021-ce53-45d9-8fdd-b0ca3115a451/raster/1024x596.png?build=103"))
@@ -51,27 +54,28 @@ mazama <- image_flop(image_read("http://phylopic.org/assets/images/submissions/b
 canidae <- image_flop(image_read("http://phylopic.org/assets/images/submissions/d67d3bf6-3509-4ab6-819a-cd409985347e.128.png"))
 leopardus <- image_flop(image_read("http://phylopic.org/assets/images/submissions/cbc3f93e-0ce3-4e3b-871d-6ac688ed8810.128.png"))
 
-####################################### ABRIL ########
+####################################### OTOÑO ########
 
-registers_abril <- datacam_abril 
-registers_abril$Time <- as.character(registers_abril$Time)
-registers_abril$decimal <- sapply(strsplit(registers_abril$Time,":"), function(x){
+registers_otono <- datacam_otono
+registers_otono$Time <- as.character(registers_otono$Time)
+registers_otono$decimal <- sapply(strsplit(registers_otono$Time,":"), function(x){
    x <- as.numeric(x)
    x[1]+x[2]/60+ x[3]/3600})
 
-#### Ab - Axis ####
-especie1 <- registers_abril %>% 
+#### Otono - Axis ####
+especie1 <- registers_otono %>% 
    filter(Species == "axis")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0, ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Axis axis*", 
-           subtitle = "En los muestreos de ab17 y ab18",  
+      labs(
+         # title = "Registros de *Axis axis*", 
+         #   subtitle = "En los muestreos de ab17 y ab18",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -93,13 +97,14 @@ especie1 <- registers_abril %>%
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) + 
-   draw_image(moon, x = 0.41, y = 0.7, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(axis, x = 0.23, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 442", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.27, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.49, y = 0.77, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(hoja, x = 0.76, y = 0.84, width = 0.1, height = 0.1) +
+   draw_image(axis, x = 0.20, y = 0.84, width = 0.13, height = 0.13) +
+   draw_text("n = 316", x = 0.8, y = 0.15, size = 14)
 
-#### Ab - Hydrochoerus ####
-especie1 <- registers_abril %>% filter(Species == "hydrochoerus")  
+#### Otono - Hydrochoerus ####
+especie1 <- registers_otono %>% filter(Species == "hydrochoerus")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -108,8 +113,9 @@ especie1 <- registers_abril %>% filter(Species == "hydrochoerus")
                      size = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Hydrochoerus hydrochaeris*", 
-           subtitle = "En los muestreos de ab17 y ab18",  
+      labs(
+         # title = "Registros de *Hydrochoerus hydrochaeris*", 
+         #   subtitle = "En los muestreos de ab17 y ab18",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -131,13 +137,14 @@ especie1 <- registers_abril %>% filter(Species == "hydrochoerus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hydrochoerus, x = 0.25, y = 0.756, width = 0.13, height = 0.13) +
-   draw_text("n = 384", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.27, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.49, y = 0.77, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(hoja, x = 0.76, y = 0.84, width = 0.1, height = 0.1) +
+   draw_image(hydrochoerus, x = 0.21, y = 0.84, width = 0.13, height = 0.13) +
+   draw_text("n = 293", x = 0.8, y = 0.15, size = 14)
 
-#### Ab - Canidae ####
-especie1 <- registers_abril %>% filter(Species == "canidae")  
+#### Otono - Canidae ####
+especie1 <- registers_otono %>% filter(Species == "canidae")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -174,8 +181,8 @@ ggdraw(plot_color) +
    draw_image(canidae, x = 0.24, y = 0.752, width = 0.13, height = 0.13) +
    draw_text("n = 44", x = 0.77, y = 0.15, size = 12)
 
-#### Ab - Sus ####
-especie1 <- registers_abril %>% filter(Species == "sus")  
+#### Otono - Sus ####
+especie1 <- registers_otono %>% filter(Species == "sus")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -212,9 +219,9 @@ ggdraw(plot_color) +
    draw_image(sus, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 33", x = 0.77, y = 0.15, size = 12)
 
-#### Ab - Rhea ####
+#### Otono - Rhea ####
 
-especie1 <- registers_abril %>% filter(Species == "rhea")  
+especie1 <- registers_otono %>% filter(Species == "rhea")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -251,8 +258,8 @@ ggdraw(plot_color) +
    draw_image(rhea, x = 0.24, y = 0.74, width = 0.13, height = 0.13) +
    draw_text("n = 30", x = 0.77, y = 0.15, size = 12)
 
-#### Ab - Cingulata ####
-especie1 <- registers_abril %>% filter(Species == "cingulata")  
+#### Otono - Cingulata ####
+especie1 <- registers_otono %>% filter(Species == "cingulata")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -289,8 +296,8 @@ ggdraw(plot_color) +
    draw_image(cingulata, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 52", x = 0.77, y = 0.15, size = 12)
 
-#### Ab - Mazama ####
-especie1 <- registers_abril %>% filter(Species == "mazama")  
+#### Otono - Mazama ####
+especie1 <- registers_otono %>% filter(Species == "mazama")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -327,8 +334,8 @@ ggdraw(plot_color) +
    draw_image(mazama, x = 0.23, y = 0.75, width = 0.12, height = 0.12) +
    draw_text("n = 12", x = 0.77, y = 0.15, size = 12)
 
-#### Ab - Leopardus ####
-especie1 <- registers_abril %>% filter(Species == "leopardus")  
+#### Otono - Leopardus ####
+especie1 <- registers_otono %>% filter(Species == "leopardus")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -365,16 +372,16 @@ ggdraw(plot_color) +
    draw_image(leopardus, x = 0.24, y = 0.76, width = 0.13, height = 0.13) +
    draw_text("n = 13", x = 0.77, y = 0.15, size = 12)
 
-###################################### JULIO ########
+###################################### INVIERNO ########
 
-registers_julio <- datacam_julio 
-registers_julio$Time <- as.character(registers_julio$Time)
-registers_julio$decimal <- sapply(strsplit(registers_julio$Time,":"), function(x){
+registers_invierno <- datacam_invierno 
+registers_invierno$Time <- as.character(registers_invierno$Time)
+registers_invierno$decimal <- sapply(strsplit(registers_invierno$Time,":"), function(x){
    x <- as.numeric(x)
    x[1]+x[2]/60+ x[3]/3600})
 
-#### Jl - Axis ####
-especie1 <- registers_julio %>% filter(Species == "axis")  
+#### Invierno - Axis ####
+especie1 <- registers_invierno %>% filter(Species == "axis")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -411,8 +418,8 @@ ggdraw(plot_color) +
    draw_image(axis, x = 0.23, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 393", x = 0.77, y = 0.15, size = 12)
 
-#### Jl - Hydrochoerus ####
-especie1 <- registers_julio %>% filter(Species == "hydrochoerus")  
+#### Invierno - Hydrochoerus ####
+especie1 <- registers_invierno %>% filter(Species == "hydrochoerus")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -449,8 +456,8 @@ ggdraw(plot_color) +
    draw_image(hydrochoerus, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 397", x = 0.77, y = 0.15, size = 12)
 
-#### Jl - Canidae ####
-especie1 <- registers_julio %>% filter(Species == "canidae")  
+#### Invierno - Canidae ####
+especie1 <- registers_invierno %>% filter(Species == "canidae")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -487,8 +494,8 @@ ggdraw(plot_color) +
    draw_image(canidae, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 70", x = 0.77, y = 0.15, size = 12)
 
-#### Jl - Sus ####
-especie1 <- registers_julio %>% filter(Species == "sus")  
+#### Invierno - Sus ####
+especie1 <- registers_invierno %>% filter(Species == "sus")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -525,9 +532,9 @@ ggdraw(plot_color) +
    draw_image(sus, x = 0.245, y = 0.76, width = 0.13, height = 0.13) +
    draw_text("n = 25", x = 0.77, y = 0.15, size = 12)
 
-#### Jl - Rhea ####
+#### Invierno - Rhea ####
 
-especie1 <- registers_julio %>% filter(Species == "rhea")  
+especie1 <- registers_invierno %>% filter(Species == "rhea")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -564,8 +571,8 @@ ggdraw(plot_color) +
    draw_image(rhea, x = 0.24, y = 0.74, width = 0.13, height = 0.13) +
    draw_text("n = 71", x = 0.77, y = 0.15, size = 12)
 
-#### Jl - Cingulata ####
-especie1 <- registers_julio %>% filter(Species == "cingulata")  
+#### Invierno - Cingulata ####
+especie1 <- registers_invierno %>% filter(Species == "cingulata")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -602,8 +609,8 @@ ggdraw(plot_color) +
    draw_image(cingulata, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 67", x = 0.77, y = 0.15, size = 12)
 
-#### Jl - Mazama ####
-especie1 <- registers_julio %>% filter(Species == "mazama")
+#### Invierno - Mazama ####
+especie1 <- registers_invierno %>% filter(Species == "mazama")
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -640,8 +647,8 @@ ggdraw(plot_color) +
    draw_image(mazama, x = 0.235, y = 0.75, width = 0.12, height = 0.12) +
    draw_text("n = 15", x = 0.77, y = 0.15, size = 12)
 
-#### Jl - Leopardus ####
-especie1 <- registers_julio %>% filter(Species == "leopardus")  
+#### Invierno - Leopardus ####
+especie1 <- registers_invierno %>% filter(Species == "leopardus")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -678,16 +685,16 @@ ggdraw(plot_color) +
    draw_image(leopardus, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 10", x = 0.77, y = 0.15, size = 12)
 
-###################################### VERANO ########
+###################################### PRIVE ########
 
-registers_verano <- datacam_verano
-registers_verano$Time <- as.character(registers_verano$Time)
-registers_verano$decimal <- sapply(strsplit(registers_verano$Time,":"), function(x){
+registers_prive <- datacam_prive
+registers_prive$Time <- as.character(registers_prive$Time)
+registers_prive$decimal <- sapply(strsplit(registers_prive$Time,":"), function(x){
    x <- as.numeric(x)
    x[1]+x[2]/60+ x[3]/3600})
 
-#### Ve - Axis ####
-especie1 <- registers_verano %>% filter(Species == "axis")  
+#### Prive - Axis ####
+especie1 <- registers_prive %>% filter(Species == "axis")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -724,8 +731,8 @@ ggdraw(plot_color) +
    draw_image(axis, x = 0.23, y = 0.74, width = 0.13, height = 0.13) +
    draw_text("n = 418", x = 0.77, y = 0.15, size = 12)
 
-#### Ve - Hydrochoerus ####
-especie1 <- registers_verano %>% filter(Species == "hydrochoerus")  
+#### Prive - Hydrochoerus ####
+especie1 <- registers_prive %>% filter(Species == "hydrochoerus")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -762,8 +769,8 @@ ggdraw(plot_color) +
    draw_image(hydrochoerus, x = 0.245, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 210", x = 0.77, y = 0.15, size = 12)
 
-#### Ve - Canidae ####
-especie1 <- registers_verano %>% filter(Species == "canidae")  
+#### Prive - Canidae ####
+especie1 <- registers_prive %>% filter(Species == "canidae")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -800,8 +807,8 @@ ggdraw(plot_color) +
    draw_image(canidae, x = 0.24, y = 0.755, width = 0.13, height = 0.13) +
    draw_text("n = 10", x = 0.77, y = 0.15, size = 12)
 
-#### Ve - Sus ####
-especie1 <- registers_verano %>% filter(Species == "sus")  
+#### Prive - Sus ####
+especie1 <- registers_prive %>% filter(Species == "sus")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -838,9 +845,9 @@ ggdraw(plot_color) +
    draw_image(sus, x = 0.245, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 27", x = 0.77, y = 0.15, size = 12)
 
-#### Ve - Rhea ####
+#### Prive - Rhea ####
 
-especie1 <- registers_verano %>% filter(Species == "rhea")  
+especie1 <- registers_prive %>% filter(Species == "rhea")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -877,8 +884,8 @@ ggdraw(plot_color) +
    draw_image(rhea, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 46", x = 0.77, y = 0.15, size = 12)
 
-#### Ve - Cingulata ####
-especie1 <- registers_verano %>% filter(Species == "cingulata")  
+#### Prive - Cingulata ####
+especie1 <- registers_prive %>% filter(Species == "cingulata")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -915,8 +922,8 @@ ggdraw(plot_color) +
    draw_image(cingulata, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 20", x = 0.77, y = 0.15, size = 12)
 
-#### Ve - Mazama ####
-especie1 <- registers_verano %>% filter(Species == "mazama")  
+#### Prive - Mazama ####
+especie1 <- registers_prive %>% filter(Species == "mazama")  
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -953,8 +960,8 @@ ggdraw(plot_color) +
    draw_image(mazama, x = 0.23, y = 0.75, width = 0.12, height = 0.12) +
    draw_text("n = 20", x = 0.77, y = 0.15, size = 12)
 
-#### Ve - Leopardus ####
-especie1 <- registers_verano %>% filter(Species == "leopardus")
+#### Prive - Leopardus ####
+especie1 <- registers_prive %>% filter(Species == "leopardus")
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
