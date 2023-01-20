@@ -32,8 +32,8 @@ datacam$DateTimeOriginal <- as.factor(datacam$DateTimeOriginal)
 # datacam_julio <- datacam[datacam$Muestreo %in% c("jl17","jl18"),]
 # datacam_verano <- datacam[datacam$Muestreo %in% c("nv17","fb18","di18"),]
 
-datacam_invierno <- datacam[datacam$Estacion %in% c("Invierno"),]
 datacam_otono <- datacam[datacam$Estacion %in% c("Otono"),]
+datacam_invierno <- datacam[datacam$Estacion %in% c("Invierno"),]
 datacam_prive <- datacam[datacam$Estacion %in% c("Prive"),]
 
 ymax_AeH <- 50
@@ -73,9 +73,8 @@ especie1 <- registers_otono %>%
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0, ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(
-         # title = "Registros de *Axis axis*", 
-         #   subtitle = "En los muestreos de ab17 y ab18",  
+      labs(title = "Registros de *Axis axis*",
+           subtitle = "En Otoño",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -88,20 +87,20 @@ especie1 <- registers_otono %>%
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.217,0), xmax = c(24, 7.767),
+               xmin = c(18.1,0), xmax = c(24, 7.367),
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 7.383, xmax = 18.317,
+               xmin = 6.65, xmax = 18.283,
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.27, width = 0.07, height = 0.06) + 
-   draw_image(moon, x = 0.49, y = 0.77, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hoja, x = 0.76, y = 0.84, width = 0.1, height = 0.1) +
-   draw_image(axis, x = 0.20, y = 0.84, width = 0.13, height = 0.13) +
-   draw_text("n = 316", x = 0.8, y = 0.15, size = 14)
+   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.49, y = 0.7, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
+   draw_image(axis, x = 0.23, y = 0.75, width = 0.13, height = 0.13) +
+   draw_text("n = 316", x = 0.77, y = 0.15, size = 12)
 
 #### Otono - Hydrochoerus ####
 especie1 <- registers_otono %>% filter(Species == "hydrochoerus")  
@@ -110,12 +109,11 @@ especie1 <- registers_otono %>% filter(Species == "hydrochoerus")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(
-         # title = "Registros de *Hydrochoerus hydrochaeris*", 
-         #   subtitle = "En los muestreos de ab17 y ab18",  
+      labs(title = "Registros de *Hydrochoerus hydrochaeris*",
+           subtitle = "En Otoño",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -128,20 +126,20 @@ especie1 <- registers_otono %>% filter(Species == "hydrochoerus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.217,0), xmax = c(24, 7.767),
+               xmin = c(18.1,0), xmax = c(24, 7.367),
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 7.383, xmax = 18.317,
+               xmin = 6.65, xmax = 18.283,
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.27, width = 0.07, height = 0.06) + 
-   draw_image(moon, x = 0.49, y = 0.77, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hoja, x = 0.76, y = 0.84, width = 0.1, height = 0.1) +
-   draw_image(hydrochoerus, x = 0.21, y = 0.84, width = 0.13, height = 0.13) +
-   draw_text("n = 293", x = 0.8, y = 0.15, size = 14)
+   draw_image(sun, x = 0.5, y = 0.2, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.49, y = 0.725, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(hoja, x = 0.71, y = 0.79, width = 0.1, height = 0.1) +
+   draw_image(hydrochoerus, x = 0.24, y = 0.77, width = 0.13, height = 0.13) +
+   draw_text("n = 293", x = 0.77, y = 0.15, size = 14)
 
 #### Otono - Canidae ####
 especie1 <- registers_otono %>% filter(Species == "canidae")  
@@ -150,11 +148,11 @@ especie1 <- registers_otono %>% filter(Species == "canidae")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Canidae*", 
-           subtitle = "En los muestreos de ab17 y ab18",  
+           subtitle = "En Otoño",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -167,19 +165,20 @@ especie1 <- registers_otono %>% filter(Species == "canidae")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.217,0), xmax = c(24, 7.767),
+               xmin = c(18.1,0), xmax = c(24, 7.367),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 7.383, xmax = 18.317,
+               xmin = 6.65, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.725, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
    draw_image(canidae, x = 0.24, y = 0.752, width = 0.13, height = 0.13) +
-   draw_text("n = 44", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 27", x = 0.77, y = 0.15, size = 12)
 
 #### Otono - Sus ####
 especie1 <- registers_otono %>% filter(Species == "sus")  
@@ -188,11 +187,11 @@ especie1 <- registers_otono %>% filter(Species == "sus")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Sus scrofa*", 
-           subtitle = "En los muestreos de ab17 y ab18",  
+           subtitle = "En Otoño",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -205,19 +204,20 @@ especie1 <- registers_otono %>% filter(Species == "sus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.217,0), xmax = c(24, 7.767),
+               xmin = c(18.1,0), xmax = c(24, 7.367),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 7.383, xmax = 18.317,
+               xmin = 6.65, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
+   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
    draw_image(sus, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 33", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 28", x = 0.77, y = 0.15, size = 12)
 
 #### Otono - Rhea ####
 
@@ -231,7 +231,7 @@ especie1 <- registers_otono %>% filter(Species == "rhea")
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Rhea americana*", 
-           subtitle = "En los muestreos de ab17 y ab18",  
+           subtitle = "En Otoño",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -244,19 +244,20 @@ especie1 <- registers_otono %>% filter(Species == "rhea")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.217,0), xmax = c(24, 7.767),
+               xmin = c(18.1,0), xmax = c(24, 7.367),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 7.383, xmax = 18.317,
+               xmin = 6.65, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
+   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
    draw_image(rhea, x = 0.24, y = 0.74, width = 0.13, height = 0.13) +
-   draw_text("n = 30", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 25", x = 0.77, y = 0.15, size = 12)
 
 #### Otono - Cingulata ####
 especie1 <- registers_otono %>% filter(Species == "cingulata")  
@@ -265,11 +266,11 @@ especie1 <- registers_otono %>% filter(Species == "cingulata")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Cingulata*", 
-           subtitle = "En los muestreos de ab17 y ab18",  
+           subtitle = "En Otoño",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -282,19 +283,20 @@ especie1 <- registers_otono %>% filter(Species == "cingulata")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.217,0), xmax = c(24, 7.767),
+               xmin = c(18.1,0), xmax = c(24, 7.367),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 7.383, xmax = 18.317,
+               xmin = 6.65, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
    draw_image(cingulata, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 52", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 35", x = 0.77, y = 0.15, size = 12)
 
 #### Otono - Mazama ####
 especie1 <- registers_otono %>% filter(Species == "mazama")  
@@ -303,11 +305,11 @@ especie1 <- registers_otono %>% filter(Species == "mazama")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Mazama gouazoubira*", 
-           subtitle = "En los muestreos de ab17 y ab18",  
+           subtitle = "En Otoño",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -320,17 +322,18 @@ especie1 <- registers_otono %>% filter(Species == "mazama")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.217,0), xmax = c(24, 7.767),
+               xmin = c(18.1,0), xmax = c(24, 7.367),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 7.383, xmax = 18.317,
+               xmin = 6.65, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
+   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
    draw_image(mazama, x = 0.23, y = 0.75, width = 0.12, height = 0.12) +
    draw_text("n = 12", x = 0.77, y = 0.15, size = 12)
 
@@ -345,7 +348,7 @@ especie1 <- registers_otono %>% filter(Species == "leopardus")
       scale_y_continuous(limits = c(0, ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Leopardus geoffroyi*", 
-           subtitle = "En los muestreos de ab17 y ab18",  
+           subtitle = "En Otoño",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -358,19 +361,20 @@ especie1 <- registers_otono %>% filter(Species == "leopardus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.217,0), xmax = c(24, 7.767),
+               xmin = c(18.1,0), xmax = c(24, 7.367),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 7.383, xmax = 18.317,
+               xmin = 6.65, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
    draw_image(leopardus, x = 0.24, y = 0.76, width = 0.13, height = 0.13) +
-   draw_text("n = 13", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 11", x = 0.77, y = 0.15, size = 12)
 
 ###################################### INVIERNO ########
 
@@ -387,11 +391,11 @@ especie1 <- registers_invierno %>% filter(Species == "axis")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       labs(title = "Registros de *Axis axis*", 
-           subtitle = "En los muestreos de jl17 y jl18",  
+           subtitle = "En Invierno",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -404,19 +408,20 @@ especie1 <- registers_invierno %>% filter(Species == "axis")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.233,0), xmax = c(24, 7.767),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.2, xmax = 19.083,
+               xmin = 6.65, xmax = 18.833,
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(moon, x = 0.41, y = 0.7, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
    draw_image(axis, x = 0.23, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 393", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 448", x = 0.77, y = 0.15, size = 12)
 
 #### Invierno - Hydrochoerus ####
 especie1 <- registers_invierno %>% filter(Species == "hydrochoerus")  
@@ -425,11 +430,11 @@ especie1 <- registers_invierno %>% filter(Species == "hydrochoerus")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Hydrochoerus hydrochaeris*", 
-           subtitle = "En los muestreos de jl17 y jl18",  
+           subtitle = "En Invierno",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -442,19 +447,20 @@ especie1 <- registers_invierno %>% filter(Species == "hydrochoerus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.233,0), xmax = c(24, 7.767),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.2, xmax = 19.083,
+               xmin = 6.65, xmax = 18.833,
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hydrochoerus, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 397", x = 0.77, y = 0.15, size = 12)
+   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
+   draw_image(hydrochoerus, x = 0.26, y = 0.75, width = 0.13, height = 0.13) +
+   draw_text("n = 396", x = 0.77, y = 0.15, size = 12)
 
 #### Invierno - Canidae ####
 especie1 <- registers_invierno %>% filter(Species == "canidae")  
@@ -463,11 +469,11 @@ especie1 <- registers_invierno %>% filter(Species == "canidae")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Canidae*", 
-           subtitle = "En los muestreos de jl17 y jl18",  
+           subtitle = "En Invierno",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -480,19 +486,20 @@ especie1 <- registers_invierno %>% filter(Species == "canidae")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.233,0), xmax = c(24, 7.767),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.2, xmax = 19.083,
+               xmin = 6.65, xmax = 18.833,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(canidae, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 70", x = 0.77, y = 0.15, size = 12)
+   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
+   draw_image(canidae, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
+   draw_text("n = 66", x = 0.77, y = 0.15, size = 12)
 
 #### Invierno - Sus ####
 especie1 <- registers_invierno %>% filter(Species == "sus")  
@@ -501,11 +508,11 @@ especie1 <- registers_invierno %>% filter(Species == "sus")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Sus scrofa*", 
-           subtitle = "En los muestreos de jl17 y jl18",  
+           subtitle = "En Invierno",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -518,19 +525,20 @@ especie1 <- registers_invierno %>% filter(Species == "sus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.233,0), xmax = c(24, 7.767),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.2, xmax = 19.083,
+               xmin = 6.65, xmax = 18.833,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(sus, x = 0.245, y = 0.76, width = 0.13, height = 0.13) +
-   draw_text("n = 25", x = 0.77, y = 0.15, size = 12)
+   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
+   draw_image(sus, x = 0.255, y = 0.76, width = 0.13, height = 0.13) +
+   draw_text("n = 18", x = 0.77, y = 0.15, size = 12)
 
 #### Invierno - Rhea ####
 
@@ -544,7 +552,7 @@ especie1 <- registers_invierno %>% filter(Species == "rhea")
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Rhea americana*", 
-           subtitle = "En los muestreos de jl17 y jl18",  
+           subtitle = "En Invierno",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -557,19 +565,20 @@ especie1 <- registers_invierno %>% filter(Species == "rhea")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.233,0), xmax = c(24, 7.767),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.2, xmax = 19.083,
+               xmin = 6.65, xmax = 18.833,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
+   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
    draw_image(rhea, x = 0.24, y = 0.74, width = 0.13, height = 0.13) +
-   draw_text("n = 71", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 50", x = 0.77, y = 0.15, size = 12)
 
 #### Invierno - Cingulata ####
 especie1 <- registers_invierno %>% filter(Species == "cingulata")  
@@ -578,11 +587,11 @@ especie1 <- registers_invierno %>% filter(Species == "cingulata")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       labs(title = "Registros de *Cingulata*", 
-           subtitle = "En los muestreos de jl17 y jl18",  
+           subtitle = "En Invierno",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -595,19 +604,20 @@ especie1 <- registers_invierno %>% filter(Species == "cingulata")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.233,0), xmax = c(24, 7.767),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.2, xmax = 19.083,
+               xmin = 6.65, xmax = 18.833,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(cingulata, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 67", x = 0.77, y = 0.15, size = 12)
+   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
+   draw_image(cingulata, x = 0.25, y = 0.75, width = 0.13, height = 0.13) +
+   draw_text("n = 66", x = 0.77, y = 0.15, size = 12)
 
 #### Invierno - Mazama ####
 especie1 <- registers_invierno %>% filter(Species == "mazama")
@@ -616,11 +626,11 @@ especie1 <- registers_invierno %>% filter(Species == "mazama")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Mazama gouazoubira*", 
-           subtitle = "En los muestreos de jl17 y jl18",  
+           subtitle = "En Invierno",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -633,19 +643,20 @@ especie1 <- registers_invierno %>% filter(Species == "mazama")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.233,0), xmax = c(24, 7.767),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.2, xmax = 19.083,
+               xmin = 6.65, xmax = 18.833,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
    draw_image(mazama, x = 0.235, y = 0.75, width = 0.12, height = 0.12) +
-   draw_text("n = 15", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 9", x = 0.77, y = 0.15, size = 12)
 
 #### Invierno - Leopardus ####
 especie1 <- registers_invierno %>% filter(Species == "leopardus")  
@@ -658,7 +669,7 @@ especie1 <- registers_invierno %>% filter(Species == "leopardus")
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Leopardus geoffroyi*", 
-           subtitle = "En los muestreos de jl17 y jl18",  
+           subtitle = "En Invierno",  
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -671,18 +682,19 @@ especie1 <- registers_invierno %>% filter(Species == "leopardus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.233,0), xmax = c(24, 7.767),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.2, xmax = 19.083,
+               xmin = 6.65, xmax = 18.833,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(leopardus, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
+   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
+   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
+   draw_image(leopardus, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
    draw_text("n = 10", x = 0.77, y = 0.15, size = 12)
 
 ###################################### PRIVE ########
@@ -700,11 +712,11 @@ especie1 <- registers_prive %>% filter(Species == "axis")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Axis axis*", 
-           subtitle = "En los muestreos de nv17, fb18 y di18",
+           subtitle = "En Primavera - Verano",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -717,19 +729,20 @@ especie1 <- registers_prive %>% filter(Species == "axis")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(19.217,0), xmax = c(24, 6.867),
+               xmin = c(18.833,0), xmax = c(24, 6.850),
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 5.917, xmax = 19.833,
+               xmin = 6.617, xmax = 19.183,
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
+   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
    draw_image(axis, x = 0.23, y = 0.74, width = 0.13, height = 0.13) +
-   draw_text("n = 418", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 489", x = 0.77, y = 0.15, size = 12)
 
 #### Prive - Hydrochoerus ####
 especie1 <- registers_prive %>% filter(Species == "hydrochoerus")  
@@ -738,11 +751,11 @@ especie1 <- registers_prive %>% filter(Species == "hydrochoerus")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Hydrochoerus hydrochaeris*", 
-           subtitle = "En los muestreos de nv17, fb18 y di18",
+           subtitle = "En Primavera - Verano",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -755,19 +768,20 @@ especie1 <- registers_prive %>% filter(Species == "hydrochoerus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(19.217,0), xmax = c(24, 6.867),
+               xmin = c(18.833,0), xmax = c(24, 6.850),
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 5.917, xmax = 19.833,
+               xmin = 6.617, xmax = 19.183,
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(hydrochoerus, x = 0.245, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 210", x = 0.77, y = 0.15, size = 12)
+   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
+   draw_image(hydrochoerus, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
+   draw_text("n = 302", x = 0.77, y = 0.15, size = 12)
 
 #### Prive - Canidae ####
 especie1 <- registers_prive %>% filter(Species == "canidae")  
@@ -776,11 +790,11 @@ especie1 <- registers_prive %>% filter(Species == "canidae")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Canidae*", 
-           subtitle = "En los muestreos de nv17, fb18 y di18",
+           subtitle = "En Primavera - Verano",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -793,19 +807,20 @@ especie1 <- registers_prive %>% filter(Species == "canidae")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(19.217,0), xmax = c(24, 6.867),
+               xmin = c(18.833,0), xmax = c(24, 6.850),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 5.917, xmax = 19.833,
+               xmin = 6.617, xmax = 19.183,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
+   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
    draw_image(canidae, x = 0.24, y = 0.755, width = 0.13, height = 0.13) +
-   draw_text("n = 10", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 31", x = 0.77, y = 0.15, size = 12)
 
 #### Prive - Sus ####
 especie1 <- registers_prive %>% filter(Species == "sus")  
@@ -814,11 +829,11 @@ especie1 <- registers_prive %>% filter(Species == "sus")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Sus scrofa*", 
-           subtitle = "En los muestreos de nv17, fb18 y di18",
+           subtitle = "En Primavera - Verano",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -831,19 +846,20 @@ especie1 <- registers_prive %>% filter(Species == "sus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(19.217,0), xmax = c(24, 6.867),
+               xmin = c(18.833,0), xmax = c(24, 6.850),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 5.917, xmax = 19.833,
+               xmin = 6.617, xmax = 19.183,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(sus, x = 0.245, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 27", x = 0.77, y = 0.15, size = 12)
+   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
+   draw_image(sus, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
+   draw_text("n = 39", x = 0.77, y = 0.15, size = 12)
 
 #### Prive - Rhea ####
 
@@ -857,7 +873,7 @@ especie1 <- registers_prive %>% filter(Species == "rhea")
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Rhea americana*", 
-           subtitle = "En los muestreos de nv17, fb18 y di18",
+           subtitle = "En Primavera - Verano",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -870,19 +886,20 @@ especie1 <- registers_prive %>% filter(Species == "rhea")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(19.217,0), xmax = c(24, 6.867),
+               xmin = c(18.833,0), xmax = c(24, 6.850),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 5.917, xmax = 19.833,
+               xmin = 6.617, xmax = 19.183,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
    draw_image(rhea, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 46", x = 0.77, y = 0.15, size = 12)
+   draw_text("n = 72", x = 0.77, y = 0.15, size = 12)
 
 #### Prive - Cingulata ####
 especie1 <- registers_prive %>% filter(Species == "cingulata")  
@@ -891,11 +908,11 @@ especie1 <- registers_prive %>% filter(Species == "cingulata")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Cingulata*", 
-           subtitle = "En los muestreos de nv17, fb18 y di18",
+           subtitle = "En Primavera - Verano",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -908,19 +925,20 @@ especie1 <- registers_prive %>% filter(Species == "cingulata")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(19.217,0), xmax = c(24, 6.867),
+               xmin = c(18.833,0), xmax = c(24, 6.850),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 5.917, xmax = 19.833,
+               xmin = 6.617, xmax = 19.183,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(cingulata, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 20", x = 0.77, y = 0.15, size = 12)
+   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
+   draw_image(cingulata, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
+   draw_text("n = 38", x = 0.77, y = 0.15, size = 12)
 
 #### Prive - Mazama ####
 especie1 <- registers_prive %>% filter(Species == "mazama")  
@@ -929,11 +947,11 @@ especie1 <- registers_prive %>% filter(Species == "mazama")
       geom_histogram(breaks = seq(0, 24),
                      fill = "steelblue4",
                      colour = "black", 
-                     size = 0.3) +
+                     linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Mazama gouazoubira*", 
-           subtitle = "En los muestreos de nv17, fb18 y di18",
+           subtitle = "En Primavera - Verano",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
@@ -946,19 +964,20 @@ especie1 <- registers_prive %>% filter(Species == "mazama")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(19.217,0), xmax = c(24, 6.867),
+               xmin = c(18.833,0), xmax = c(24, 6.850),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 5.917, xmax = 19.833,
+               xmin = 6.617, xmax = 19.183,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
    draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(mazama, x = 0.23, y = 0.75, width = 0.12, height = 0.12) +
-   draw_text("n = 20", x = 0.77, y = 0.15, size = 12)
+   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
+   draw_image(mazama, x = 0.25, y = 0.75, width = 0.12, height = 0.12) +
+   draw_text("n = 26", x = 0.77, y = 0.15, size = 12)
 
 #### Prive - Leopardus ####
 especie1 <- registers_prive %>% filter(Species == "leopardus")
@@ -971,7 +990,7 @@ especie1 <- registers_prive %>% filter(Species == "leopardus")
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       labs(title = "Registros de *Leopardus geoffroyi*", 
-           subtitle = "En los muestreos de nv17, fb18 y di18",
+           subtitle = "En Primavera - Verano",
            y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + 
@@ -984,16 +1003,18 @@ especie1 <- registers_prive %>% filter(Species == "leopardus")
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(19.217,0), xmax = c(24, 6.867),
+               xmin = c(18.833,0), xmax = c(24, 6.850),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 5.917, xmax = 19.833,
+               xmin = 6.617, xmax = 19.183,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(leopardus, x = 0.24, y = 0.76, width = 0.13, height = 0.13) +
-   draw_text("n = 19", x = 0.77, y = 0.15, size = 12)
+   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
+   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
+   draw_image(leopardus, x = 0.255, y = 0.76, width = 0.13, height = 0.13) +
+   draw_text("n = 21", x = 0.77, y = 0.15, size = 12)
+
