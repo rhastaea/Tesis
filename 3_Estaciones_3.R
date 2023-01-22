@@ -54,6 +54,7 @@ mazama <- image_flop(image_read("http://phylopic.org/assets/images/submissions/b
 canidae <- image_flop(image_read("http://phylopic.org/assets/images/submissions/d67d3bf6-3509-4ab6-819a-cd409985347e.128.png"))
 leopardus <- image_flop(image_read("http://phylopic.org/assets/images/submissions/cbc3f93e-0ce3-4e3b-871d-6ac688ed8810.128.png"))
 
+
 ####################################### OTOÑO ########
 
 registers_otono <- datacam_otono
@@ -61,10 +62,12 @@ registers_otono$Time <- as.character(registers_otono$Time)
 registers_otono$decimal <- sapply(strsplit(registers_otono$Time,":"), function(x){
    x <- as.numeric(x)
    x[1]+x[2]/60+ x[3]/3600})
+estacion <- "A"
 
 #### Otono - Axis ####
-especie1 <- registers_otono %>% 
-   filter(Species == "axis")  
+especie1 <- registers_otono %>% filter(Species == "axis")  
+pngs <- axis
+n <- "n = 316"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -73,9 +76,7 @@ especie1 <- registers_otono %>%
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0, ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Axis axis*",
-           subtitle = "En Otoño",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -96,15 +97,17 @@ especie1 <- registers_otono %>%
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) + 
-   draw_image(moon, x = 0.49, y = 0.7, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
-   draw_image(axis, x = 0.23, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 316", x = 0.77, y = 0.15, size = 12) + 
-   draw_label("A", x = 0.25, y = 0.15, size = 25, fontface = "bold")
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.18, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Otono - Hydrochoerus ####
-especie1 <- registers_otono %>% filter(Species == "hydrochoerus")  
+especie1 <- registers_otono %>% filter(Species == "hydrochoerus") 
+pngs <- hydrochoerus
+n <- "n = 293"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -113,9 +116,7 @@ especie1 <- registers_otono %>% filter(Species == "hydrochoerus")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Hydrochoerus hydrochaeris*",
-           subtitle = "En Otoño",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -136,14 +137,17 @@ especie1 <- registers_otono %>% filter(Species == "hydrochoerus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.2, width = 0.07, height = 0.06) + 
-   draw_image(moon, x = 0.49, y = 0.725, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hoja, x = 0.71, y = 0.79, width = 0.1, height = 0.1) +
-   draw_image(hydrochoerus, x = 0.24, y = 0.77, width = 0.13, height = 0.13) +
-   draw_text("n = 293", x = 0.77, y = 0.15, size = 14)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.2, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Otono - Canidae ####
-especie1 <- registers_otono %>% filter(Species == "canidae")  
+especie1 <- registers_otono %>% filter(Species == "canidae")
+pngs <- canidae
+n <- "n = 27"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -152,9 +156,7 @@ especie1 <- registers_otono %>% filter(Species == "canidae")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Canidae*", 
-           subtitle = "En Otoño",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -175,14 +177,17 @@ especie1 <- registers_otono %>% filter(Species == "canidae")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.725, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
-   draw_image(canidae, x = 0.24, y = 0.752, width = 0.13, height = 0.13) +
-   draw_text("n = 27", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Otono - Sus ####
 especie1 <- registers_otono %>% filter(Species == "sus")  
+pngs <- sus
+n <- "n = 28"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -191,9 +196,7 @@ especie1 <- registers_otono %>% filter(Species == "sus")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Sus scrofa*", 
-           subtitle = "En Otoño",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -214,15 +217,17 @@ especie1 <- registers_otono %>% filter(Species == "sus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
-   draw_image(sus, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 28", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Otono - Rhea ####
-
 especie1 <- registers_otono %>% filter(Species == "rhea")  
+pngs <- rhea
+n <- "n = 25"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -231,9 +236,7 @@ especie1 <- registers_otono %>% filter(Species == "rhea")
                      size = 0.5) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Rhea americana*", 
-           subtitle = "En Otoño",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -254,14 +257,17 @@ especie1 <- registers_otono %>% filter(Species == "rhea")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
-   draw_image(rhea, x = 0.24, y = 0.74, width = 0.13, height = 0.13) +
-   draw_text("n = 25", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.18, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Otono - Cingulata ####
 especie1 <- registers_otono %>% filter(Species == "cingulata")  
+pngs <- cingulata
+n <- "n = 35"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -270,9 +276,7 @@ especie1 <- registers_otono %>% filter(Species == "cingulata")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Cingulata*", 
-           subtitle = "En Otoño",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -293,14 +297,17 @@ especie1 <- registers_otono %>% filter(Species == "cingulata")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
-   draw_image(cingulata, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 35", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(cingulata, x = 0.18, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Otono - Mazama ####
 especie1 <- registers_otono %>% filter(Species == "mazama")  
+pngs <- mazama
+n <- "n = 12"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -309,9 +316,7 @@ especie1 <- registers_otono %>% filter(Species == "mazama")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Mazama gouazoubira*", 
-           subtitle = "En Otoño",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -332,14 +337,17 @@ especie1 <- registers_otono %>% filter(Species == "mazama")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
-   draw_image(mazama, x = 0.23, y = 0.75, width = 0.12, height = 0.12) +
-   draw_text("n = 12", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(mazama, x = 0.175, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Otono - Leopardus ####
-especie1 <- registers_otono %>% filter(Species == "leopardus")  
+especie1 <- registers_otono %>% filter(Species == "leopardus") 
+pngs <- leopardus
+n <- "n = 11"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -348,9 +356,7 @@ especie1 <- registers_otono %>% filter(Species == "leopardus")
                      size = 0.4) +
       scale_y_continuous(limits = c(0, ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Leopardus geoffroyi*", 
-           subtitle = "En Otoño",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -371,11 +377,12 @@ especie1 <- registers_otono %>% filter(Species == "leopardus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(hoja, x = 0.71, y = 0.75, width = 0.1, height = 0.1) +
-   draw_image(leopardus, x = 0.24, y = 0.76, width = 0.13, height = 0.13) +
-   draw_text("n = 11", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(leopardus, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 ###################################### INVIERNO ########
 
@@ -384,9 +391,12 @@ registers_invierno$Time <- as.character(registers_invierno$Time)
 registers_invierno$decimal <- sapply(strsplit(registers_invierno$Time,":"), function(x){
    x <- as.numeric(x)
    x[1]+x[2]/60+ x[3]/3600})
+estacion <- "B"
 
 #### Invierno - Axis ####
-especie1 <- registers_invierno %>% filter(Species == "axis")  
+especie1 <- registers_invierno %>% filter(Species == "axis") 
+pngs <- axis
+n <- "n = 448"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -395,9 +405,7 @@ especie1 <- registers_invierno %>% filter(Species == "axis")
                      linewidth = 0.3) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
-      labs(title = "Registros de *Axis axis*", 
-           subtitle = "En Invierno",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -418,14 +426,17 @@ especie1 <- registers_invierno %>% filter(Species == "axis")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.41, y = 0.7, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
-   draw_image(axis, x = 0.23, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 448", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.40, y = 0.76, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(axis, x = 0.18, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Invierno - Hydrochoerus ####
-especie1 <- registers_invierno %>% filter(Species == "hydrochoerus")  
+especie1 <- registers_invierno %>% filter(Species == "hydrochoerus") 
+pngs <- hydrochoerus
+n <- "n = 396"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -434,9 +445,7 @@ especie1 <- registers_invierno %>% filter(Species == "hydrochoerus")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Hydrochoerus hydrochaeris*", 
-           subtitle = "En Invierno",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -457,14 +466,17 @@ especie1 <- registers_invierno %>% filter(Species == "hydrochoerus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
-   draw_image(hydrochoerus, x = 0.26, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 396", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(hydrochoerus, x = 0.195, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Invierno - Canidae ####
 especie1 <- registers_invierno %>% filter(Species == "canidae")  
+pngs <- canidae
+n <- "n = 66"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -473,9 +485,7 @@ especie1 <- registers_invierno %>% filter(Species == "canidae")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Canidae*", 
-           subtitle = "En Invierno",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -496,14 +506,17 @@ especie1 <- registers_invierno %>% filter(Species == "canidae")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
-   draw_image(canidae, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 66", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(canidae, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Invierno - Sus ####
 especie1 <- registers_invierno %>% filter(Species == "sus")  
+pngs <- sus
+n <- "n = 18"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -512,9 +525,7 @@ especie1 <- registers_invierno %>% filter(Species == "sus")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Sus scrofa*", 
-           subtitle = "En Invierno",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -535,15 +546,17 @@ especie1 <- registers_invierno %>% filter(Species == "sus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
-   draw_image(sus, x = 0.255, y = 0.76, width = 0.13, height = 0.13) +
-   draw_text("n = 18", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(sus, x = 0.195, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Invierno - Rhea ####
-
-especie1 <- registers_invierno %>% filter(Species == "rhea")  
+especie1 <- registers_invierno %>% filter(Species == "rhea") 
+pngs <- rhea
+n <- "n = 50"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -552,9 +565,7 @@ especie1 <- registers_invierno %>% filter(Species == "rhea")
                      size = 0.5) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Rhea americana*", 
-           subtitle = "En Invierno",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -575,14 +586,17 @@ especie1 <- registers_invierno %>% filter(Species == "rhea")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
-   draw_image(rhea, x = 0.24, y = 0.74, width = 0.13, height = 0.13) +
-   draw_text("n = 50", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(rhea, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Invierno - Cingulata ####
-especie1 <- registers_invierno %>% filter(Species == "cingulata")  
+especie1 <- registers_invierno %>% filter(Species == "cingulata") 
+pngs <- cingulata
+n <- "n = 66"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -591,9 +605,7 @@ especie1 <- registers_invierno %>% filter(Species == "cingulata")
                      linewidth = 0.3) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
-      labs(title = "Registros de *Cingulata*", 
-           subtitle = "En Invierno",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -614,14 +626,17 @@ especie1 <- registers_invierno %>% filter(Species == "cingulata")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
-   draw_image(cingulata, x = 0.25, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 66", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(cingulata, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Invierno - Mazama ####
 especie1 <- registers_invierno %>% filter(Species == "mazama")
+pngs <- mazama
+n <- "n = 9"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -630,9 +645,7 @@ especie1 <- registers_invierno %>% filter(Species == "mazama")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Mazama gouazoubira*", 
-           subtitle = "En Invierno",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -653,14 +666,17 @@ especie1 <- registers_invierno %>% filter(Species == "mazama")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
-   draw_image(mazama, x = 0.235, y = 0.75, width = 0.12, height = 0.12) +
-   draw_text("n = 9", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(mazama, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Invierno - Leopardus ####
 especie1 <- registers_invierno %>% filter(Species == "leopardus")  
+pngs <- leopardus
+n <- "n = 10"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -669,9 +685,7 @@ especie1 <- registers_invierno %>% filter(Species == "leopardus")
                      size = 0.4) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Leopardus geoffroyi*", 
-           subtitle = "En Invierno",  
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -692,11 +706,12 @@ especie1 <- registers_invierno %>% filter(Species == "leopardus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(copo, x = 0.72, y = 0.76, width = 0.08, height = 0.08) +
-   draw_image(leopardus, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 10", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(leopardus, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 ###################################### PRIVE ########
 
@@ -705,9 +720,12 @@ registers_prive$Time <- as.character(registers_prive$Time)
 registers_prive$decimal <- sapply(strsplit(registers_prive$Time,":"), function(x){
    x <- as.numeric(x)
    x[1]+x[2]/60+ x[3]/3600})
+estacion <- "C"
 
 #### Prive - Axis ####
-especie1 <- registers_prive %>% filter(Species == "axis")  
+especie1 <- registers_prive %>% filter(Species == "axis") 
+pngs <- axis
+n <- "n = 489"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -716,9 +734,7 @@ especie1 <- registers_prive %>% filter(Species == "axis")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Axis axis*", 
-           subtitle = "En Primavera - Verano",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -739,14 +755,17 @@ especie1 <- registers_prive %>% filter(Species == "axis")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
-   draw_image(axis, x = 0.23, y = 0.74, width = 0.13, height = 0.13) +
-   draw_text("n = 489", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.42, y = 0.77, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(axis, x = 0.18, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Prive - Hydrochoerus ####
-especie1 <- registers_prive %>% filter(Species == "hydrochoerus")  
+especie1 <- registers_prive %>% filter(Species == "hydrochoerus") 
+pngs <- hydrochoerus
+n <- "n = 302"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -755,9 +774,7 @@ especie1 <- registers_prive %>% filter(Species == "hydrochoerus")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_AeH), breaks = seq(0, ymax_AeH, by = 10)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Hydrochoerus hydrochaeris*", 
-           subtitle = "En Primavera - Verano",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -778,14 +795,17 @@ especie1 <- registers_prive %>% filter(Species == "hydrochoerus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
-   draw_image(hydrochoerus, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 302", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(hydrochoerus, x = 0.195, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Prive - Canidae ####
-especie1 <- registers_prive %>% filter(Species == "canidae")  
+especie1 <- registers_prive %>% filter(Species == "canidae")
+pngs <- canidae
+n <- "n = 31"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -794,9 +814,7 @@ especie1 <- registers_prive %>% filter(Species == "canidae")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Canidae*", 
-           subtitle = "En Primavera - Verano",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -817,14 +835,17 @@ especie1 <- registers_prive %>% filter(Species == "canidae")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
-   draw_image(canidae, x = 0.24, y = 0.755, width = 0.13, height = 0.13) +
-   draw_text("n = 31", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Prive - Sus ####
-especie1 <- registers_prive %>% filter(Species == "sus")  
+especie1 <- registers_prive %>% filter(Species == "sus")
+pngs <- sus
+n <- "n = 39"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -833,9 +854,7 @@ especie1 <- registers_prive %>% filter(Species == "sus")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Sus scrofa*", 
-           subtitle = "En Primavera - Verano",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -856,15 +875,17 @@ especie1 <- registers_prive %>% filter(Species == "sus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
-   draw_image(sus, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 39", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Prive - Rhea ####
-
 especie1 <- registers_prive %>% filter(Species == "rhea")  
+pngs <- rhea
+n <- "n = 72"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -873,9 +894,7 @@ especie1 <- registers_prive %>% filter(Species == "rhea")
                      size = 0.5) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Rhea americana*", 
-           subtitle = "En Primavera - Verano",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -896,14 +915,17 @@ especie1 <- registers_prive %>% filter(Species == "rhea")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
-   draw_image(rhea, x = 0.24, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 72", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Prive - Cingulata ####
 especie1 <- registers_prive %>% filter(Species == "cingulata")  
+pngs <- cingulata
+n <- "n = 38"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -912,9 +934,7 @@ especie1 <- registers_prive %>% filter(Species == "cingulata")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Cingulata*", 
-           subtitle = "En Primavera - Verano",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -935,14 +955,17 @@ especie1 <- registers_prive %>% filter(Species == "cingulata")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
-   draw_image(cingulata, x = 0.255, y = 0.75, width = 0.13, height = 0.13) +
-   draw_text("n = 38", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Prive - Mazama ####
-especie1 <- registers_prive %>% filter(Species == "mazama")  
+especie1 <- registers_prive %>% filter(Species == "mazama") 
+pngs <- mazama
+n <- "n = 26"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -951,9 +974,7 @@ especie1 <- registers_prive %>% filter(Species == "mazama")
                      linewidth = 0.3) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Mazama gouazoubira*", 
-           subtitle = "En Primavera - Verano",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() +  
       theme(text = element_text(size = 17, face = "bold"),  
@@ -974,14 +995,17 @@ especie1 <- registers_prive %>% filter(Species == "mazama")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
-   draw_image(mazama, x = 0.25, y = 0.75, width = 0.12, height = 0.12) +
-   draw_text("n = 26", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
 #### Prive - Leopardus ####
 especie1 <- registers_prive %>% filter(Species == "leopardus")
+pngs <- leopardus
+n <- "n = 21"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -990,9 +1014,7 @@ especie1 <- registers_prive %>% filter(Species == "leopardus")
                      size = 0.4) +
       scale_y_continuous(limits = c(0,ymax_resto), breaks = seq(0, ymax_resto, by = 2)) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Leopardus geoffroyi*", 
-           subtitle = "En Primavera - Verano",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + 
       theme(text = element_text(size = 17, face = "bold"), 
@@ -1013,9 +1035,10 @@ especie1 <- registers_prive %>% filter(Species == "leopardus")
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, width = 0.07, height = 0.06) +
-   draw_image(moon, x = 0.49, y = 0.71, width = 0.08, height = 0.07, scale = 0.75) +
-   draw_image(flor, x = 0.72, y = 0.76, width = 0.1, height = 0.1) +
-   draw_image(leopardus, x = 0.255, y = 0.76, width = 0.13, height = 0.13) +
-   draw_text("n = 21", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
+   draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
