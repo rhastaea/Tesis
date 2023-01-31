@@ -13,27 +13,28 @@ library(rphylopic)
 library(cowplot) 
 library(png)
 library(magick)
+library(overlap)
+library(circular)
 
 setwd("C:/Users/shalo/OneDrive/Escritorio/Ilán/Tesis/Archivos ahora")
 getwd()
 
-datastation <- read.csv("datastation_final.csv", header = TRUE, sep = ",")
+datastation <- read.csv("datastation_final.csv", 
+                        header = TRUE, 
+                        sep = ",")
 
-#### Datacam sin independencia ####
-datacam <- read.csv("datacam.csv", header = T, sep = ",", row.names = 1)
+datacam <- read.csv("datacam_solapamiento.csv", 
+                    header = T, 
+                    sep = ";", 
+                    row.names = 1)
 datacam$DateTimeOriginal <- as.factor(datacam$DateTimeOriginal)
 
-#### Datacam delta 60 ####
-datacam_delta60 <- read.csv("datacam_delta60.csv", header = T, sep = ",", row.names = 1)
-datacam_delta60$DateTimeOriginal <- as.factor(datacam_delta60$DateTimeOriginal)
 
 #### Overlap ####
-library(overlap)
-
 speciesA_for_activity <- "axis"
 speciesB_for_activity <- "mazama"
 
-activityOverlap (recordTable   = datacam_delta60,
+activityOverlap (recordTable   = datacam,
                  speciesA      = speciesA_for_activity,
                  speciesB      = speciesB_for_activity,
                  writePNG      = FALSE,#Si pongo TRUE me lo guarda en plotDirectory
@@ -55,8 +56,10 @@ activityOverlap (recordTable   = datacam_delta60,
 #### Histograma radial con superposición ####
 sun <- readPNG("sun.png")
 moon <- readPNG("moon.png")
+axis <- readPNG("axis.png")
+mazama <- image_flop(image_read("http://phylopic.org/assets/images/submissions/b5f40112-0cb8-4994-aa70-28ac97ccb83f.128.png"))
 
-registers <- datacam_delta60 #ACÁ HAY QUE CAMBIAR EL DATACAM QUE QUIERO
+registers <- datacam 
 
 registers$Time <- as.character(registers$Time)
 registers$decimal <- sapply(strsplit(registers$Time,":"), function(x){
@@ -150,4 +153,27 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.7, y = 0.78, # Coordenadas en x y de la luna
             width = 0.06, height = 0.05) # Altura y ancho
 
+########################### CIRCULAR #################
+datacam$r.Time <- gsub(",",".",datacam$r.Time)
+datacam$r.Time <- as.numeric(datacam$r.Time)
+
+especie_circular <- datacam %>%
+   filter(Species == "axis") %>%
+   select(Date, Time, r.Time, Estacion) #filtro la especie que quiero
+
+timeRad.Axis <- especie_circular$r.Time * 2 * pi
+
+watson.wheeler.test(timeRad.Axis ~ Estacion, data = especie_circular)
+#y acá entre especies (mire solapamiento y luego hice el test)
+
+tabla2 <- read_table2("ocelote_tirica.txt")
+View(tabla2)
+timeRad <- tabla2$r.time * 2 * pi
+timeRad
+
+frec.filtrada<- table(tabla2$Species)
+#ocelote  tirica
+#32      18
+watson.wheeler.test(timeRad ~ Species, data=tabla2)
+#W = 8.4134, df = 2, p-value = 0.0149 
 
