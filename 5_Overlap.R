@@ -154,16 +154,16 @@ ggdraw(plot_color) +
             width = 0.06, height = 0.05) # Altura y ancho
 
 ########################### CIRCULAR #################
-datacam$r.Time <- gsub(",",".",datacam$r.Time)
-datacam$r.Time <- as.numeric(datacam$r.Time)
+datacam$r.Time <- gsub(",",".",datacam$r.Time) #Para reemplazar las comas por puntos
+datacam$r.Time <- as.numeric(datacam$r.Time) #Para pasarlo a formato numérico
 
-especie_circular <- datacam %>%
+axis_circulas <- datacam %>%
    filter(Species == "axis") %>%
-   select(Date, Time, r.Time, Estacion) #filtro la especie que quiero
+   select(Date, Time, r.Time, Estacion)
 
-timeRad.Axis <- especie_circular$r.Time * 2 * pi
+timeRad.Axis <- axis_circular$r.Time * 2 * pi
 
-watson.wheeler.test(timeRad.Axis ~ Estacion, data = especie_circular)
+watson.wheeler.test(timeRad.Axis ~ Estacion, data = axis_circular)
 #y acá entre especies (mire solapamiento y luego hice el test)
 
 tabla2 <- read_table2("ocelote_tirica.txt")
