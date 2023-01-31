@@ -21,7 +21,7 @@ datastation <- read.csv("datastation_final.csv",
                         header = TRUE, 
                         sep = ",")
 
-datacam_delta60 <- read.csv("datacam_muestreo_delta60.csv", 
+datacam_delta60 <- read.csv("datacam_d60_final.csv", 
                             header = T,
                             sep = ";",
                             row.names = 1)
@@ -45,34 +45,31 @@ registers$Time <- as.character(registers$Time)
 registers$decimal <- sapply(strsplit(registers$Time,":"), function(x){
    x <- as.numeric(x)
    x[1]+x[2]/60+ x[3]/3600})
+estacion = "B"
 
 ## Filtramos la especie que nos interesa
 
 #### AXIS ####
-especie1 <- registers %>% 
-   filter(Species == "axis") #ESPECIE QUE QUIERO
+especie1 <- registers %>% filter(Species == "axis")
 
 ymax <- 110
+pngs = axis
+n = "n = 1253"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
-      ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
+      ylim(0, ymax) +
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Axis axis*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
-      theme_bw() + # Tipo de tema para quitar el gris de fondo
+      theme_bw() + 
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
             plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
 
 (plot_color <- plot_blanco +
@@ -86,40 +83,33 @@ ymax <- 110
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5055, y = 0.20, 
-              width = 0.07, height = 0.06) + 
-   draw_image(moon, x = 0.41, y = 0.72, 
-              width = 0.08, height = 0.07,
-              scale = 0.75) + 
-   draw_image(axis, x = 0.21, y = 0.79,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 1253", x = 0.8, y = 0.15, size = 12)
+   draw_image(sun, x = 0.51, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.42, y = 0.77, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(pngs, x = 0.15, y = 0.83, width = 0.15, height = 0.15) +
+   draw_label(n, x = 0.86, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
 #### HYDROCHOERUS ####
-especie1 <- registers %>% 
-   filter(Species == "hydrochoerus") #ESPECIE QUE QUIERO
+especie1 <- registers %>% filter(Species == "hydrochoerus")
 
 ymax <- 110
+pngs = hydrochoerus
+n = "n = 991"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
       ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Hydrochoerus hydrochaeris*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + # Tipo de tema para quitar el gris de fondo
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
             plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
 
 (plot_color <- plot_blanco +
@@ -133,40 +123,33 @@ ymax <- 110
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.508, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(hydrochoerus, x = 0.235, y = 0.795,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 991", x = 0.8, y = 0.15, size = 12)
+   draw_image(sun, x = 0.515, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.51, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(pngs, x = 0.17, y = 0.84, width = 0.15, height = 0.15) +
+   draw_label(n, x = 0.86, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
 #### CANIDAE ####
-especie1 <- registers %>% 
-   filter(Species == "canidae") #ESPECIE QUE QUIERO
+especie1 <- registers %>% filter(Species == "canidae")
 
 ymax <- 20
+pngs = canidae
+n = "n = 124"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
       ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Canidae*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + # Tipo de tema para quitar el gris de fondo
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
             plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
 
 (plot_color <- plot_blanco +
@@ -180,40 +163,33 @@ ymax <- 20
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(canidae, x = 0.217, y = 0.8,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 124", x = 0.8, y = 0.15, size = 12)
+   draw_image(sun, x = 0.505, y = 0.23, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.5, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
+   draw_label(n, x = 0.86, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
 #### SUS ####
-especie1 <- registers %>% 
-   filter(Species == "sus") #ESPECIE QUE QUIERO
+especie1 <- registers %>% filter(Species == "sus")
 
 ymax <- 20
+pngs = sus
+n = "n = 85"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
       ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Sus scrofa*", 
-           #subtitle = "En los muestreos de jl17 y jl18",
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + # Tipo de tema para quitar el gris de fondo
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
             plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
 
 (plot_color <- plot_blanco +
@@ -227,41 +203,34 @@ ymax <- 20
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(sus, x = 0.23, y = 0.79,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 85", x = 0.8, y = 0.15, size = 12)
+   draw_image(sun, x = 0.505, y = 0.23, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.505, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
+   draw_label(n, x = 0.87, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
 #### RHEA ####
 
-especie1 <- registers %>% 
-   filter(Species == "rhea") #ESPECIE QUE QUIERO
+especie1 <- registers %>% filter(Species == "rhea")
 
 ymax <- 20
+pngs = rhea
+n = "n = 147"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.5) +
       ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Rhea americana*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + # Tipo de tema para quitar el gris de fondo
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
             plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
 
 (plot_color <- plot_blanco +
@@ -275,40 +244,33 @@ ymax <- 20
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(rhea, x = 0.21, y = 0.782,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 147", x = 0.8, y = 0.15, size = 12)
+   draw_image(sun, x = 0.505, y = 0.21, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.5, y = 0.78, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(pngs, x = 0.15, y = 0.82, width = 0.15, height = 0.15) +
+   draw_label(n, x = 0.87, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
 #### CINGULATA ####
-especie1 <- registers %>% 
-   filter(Species == "cingulata") #ESPECIE QUE QUIERO
+especie1 <- registers %>% filter(Species == "cingulata")
 
 ymax <- 22
+pngs = cingulata
+n = "n = 139"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
       ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Cingulata*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + # Tipo de tema para quitar el gris de fondo
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
             plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
 
 (plot_color <- plot_blanco +
@@ -322,40 +284,33 @@ ymax <- 22
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(cingulata, x = 0.21, y = 0.8,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 139", x = 0.8, y = 0.15, size = 12)
+   draw_image(sun, x = 0.515, y = 0.23, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.505, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(pngs, x = 0.15, y = 0.84, width = 0.15, height = 0.15) +
+   draw_label(n, x = 0.87, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
 #### MAZAMA ####
-especie1 <- registers %>% 
-   filter(Species == "mazama") #ESPECIE QUE QUIERO
+especie1 <- registers %>% filter(Species == "mazama")
 
 ymax <- 20
+pngs = mazama
+n = "n = 47"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.3) +
       ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Mazama gouazoubira*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + # Tipo de tema para quitar el gris de fondo
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
             plot.title = element_markdown(size = 25, hjust = 0.3),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
 
 (plot_color <- plot_blanco +
@@ -369,41 +324,34 @@ ymax <- 20
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.5, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(mazama, x = 0.21, y = 0.79,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 47", x = 0.8, y = 0.15, size = 12)
+   draw_image(sun, x = 0.505, y = 0.23, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.5, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(pngs, x = 0.14, y = 0.83, width = 0.15, height = 0.15) +
+   draw_label(n, x = 0.87, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
 
 #### LEOPARDUS ####
-especie1 <- registers %>% 
-   filter(Species == "leopardus") #ESPECIE QUE QUIERO
+especie1 <- registers %>% filter(Species == "leopardus")
 
 ymax <- 20
+pngs = leopardus
+n = "n = 42"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
-                     #aes(y = stat(count / sum(count))), #Esta línea me pone el eje y en proporción
                      fill = "steelblue4",
                      colour = "black", 
                      size = 0.4) +
       ylim(0, ymax) + #PARA TODOS MENOS PARA AXIS E HYDROCHOERUS
       scale_x_continuous("", limits = c(0, 24), breaks = seq(0, 24), labels = seq(0, 24)) +
-      labs(title = "Registros de *Leopardus geoffroyi*", 
-           #subtitle = "En los muestreos de jl17 y jl18", #NOMBRE DE LA ESPECIE QUE QUIERO
-           y = "Número de registros") +
+      labs(y = "Número de registros") +
       coord_polar(start = 0) +
       theme_bw() + # Tipo de tema para quitar el gris de fondo
       theme(text = element_text(size = 17, face = "bold"), # Tamaño y letra en negrilla
             axis.title.x = element_text(margin = unit(c(2, 0, 0, 0), "mm")), # Margenes de x
             axis.title.y = element_text(margin = unit(c(0, 3, 0, 0), "mm")), # Margenes de y
             plot.title = element_markdown(size = 25, hjust = 0.5),
-            # plot.background = element_rect(fill = "#f4f0cb", color = "#f4f0cb"),
-            # panel.background = element_rect(fill = "#f4f0cb"),
             panel.grid = element_line(color = "grey")))
 
 (plot_color <- plot_blanco +
@@ -417,11 +365,8 @@ ymax <- 20
                alpha = 0.3, fill = "#FFD819"))
 
 ggdraw(plot_color) +
-   draw_image(sun, x = 0.5, y = 0.20, # Coordenadas en x y del sol
-              width = 0.07, height = 0.06) + # Altura y ancho
-   draw_image(moon, x = 0.49, y = 0.76, # Coordenadas en x y de la luna
-              width = 0.08, height = 0.07, # Altura y ancho
-              scale = 0.75) + 
-   draw_image(leopardus, x = 0.245, y = 0.8,
-              width = 0.13, height = 0.13) +
-   draw_text("n = 42", x = 0.77, y = 0.15, size = 12)
+   draw_image(sun, x = 0.505, y = 0.23, width = 0.07, height = 0.06) + 
+   draw_image(moon, x = 0.5, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
+   draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
+   draw_label(n, x = 0.87, y = 0.15, size = 14, fontface = "bold") + 
+   draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")

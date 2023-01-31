@@ -22,7 +22,7 @@ datastation <- read.csv("datastation_final.csv",
                         sep = ",")
 
 #### CARGO DATACAM POR ESTACIONES ####
-datacam <- read.csv("datacam_muestreo_delta60.csv", 
+datacam <- read.csv("datacam_d60_final.csv", 
                     header = T,
                     sep = ";",
                     row.names = 1)
