@@ -29,11 +29,10 @@ datacam <- read.csv("datacam_solapamiento.csv",
                     row.names = 1)
 datacam$DateTimeOriginal <- as.factor(datacam$DateTimeOriginal)
 
-
-#### Overlap ####
 speciesA_for_activity <- "axis"
 speciesB_for_activity <- "mazama"
 
+#### Overlap ####
 activityOverlap (recordTable   = datacam,
                  speciesA      = speciesA_for_activity,
                  speciesB      = speciesB_for_activity,
@@ -60,15 +59,14 @@ axis <- readPNG("axis.png")
 mazama <- image_flop(image_read("http://phylopic.org/assets/images/submissions/b5f40112-0cb8-4994-aa70-28ac97ccb83f.128.png"))
 
 registers <- datacam 
-
 registers$Time <- as.character(registers$Time)
 registers$decimal <- sapply(strsplit(registers$Time,":"), function(x){
    x <- as.numeric(x)
    x[1]+x[2]/60+ x[3]/3600})
 
-especie1 <- registers %>% filter(Species == "axis")
-especie2 <- registers %>% filter(Species == "mazama")
-especies = rbind(especie2,especie1)
+datacam_axis <- registers %>% filter(Species == "axis")
+datacam_mazama <- registers %>% filter(Species == "mazama")
+axis_mazama = rbind(especie2,especie1)
 
 (plot_blanco <- ggplot(especies, aes(x = decimal, fill = Species)) + 
     geom_density(
@@ -153,27 +151,18 @@ ggdraw(plot_color) +
    draw_image(moon, x = 0.7, y = 0.78, # Coordenadas en x y de la luna
             width = 0.06, height = 0.05) # Altura y ancho
 
-########################### CIRCULAR #################
+########################### Watson Wheeler #################
 datacam$r.Time <- gsub(",",".",datacam$r.Time) #Para reemplazar las comas por puntos
 datacam$r.Time <- as.numeric(datacam$r.Time) #Para pasarlo a formato numérico
+datacam$r.Time <- datacam$r.Time * 2 * pi #para pasarlo a radianes
 
-axis_circulas <- datacam %>%
-   filter(Species == "axis") %>%
-   select(Date, Time, r.Time, Estacion)
+datacam_axis <- datacam %>% filter(Species == "axis")
+datacam_mazama <- datacam %>% filter(Species == "mazama")
+axis_mazama = rbind(datacam_axis,datacam_mazama)
 
-timeRad.Axis <- axis_circular$r.Time * 2 * pi
+axis_mazama_circular <- axis_mazama %>% select(Species, r.Time)
 
-watson.wheeler.test(timeRad.Axis ~ Estacion, data = axis_circular)
-#y acá entre especies (mire solapamiento y luego hice el test)
+timeRad <- axis_mazama_circular$r.Time
+(frec.filtrada <- table(axis_mazama_circular$Species))
 
-tabla2 <- read_table2("ocelote_tirica.txt")
-View(tabla2)
-timeRad <- tabla2$r.time * 2 * pi
-timeRad
-
-frec.filtrada<- table(tabla2$Species)
-#ocelote  tirica
-#32      18
-watson.wheeler.test(timeRad ~ Species, data=tabla2)
-#W = 8.4134, df = 2, p-value = 0.0149 
-
+watson.wheeler.test(axis_mazama$r.Time ~ axis_mazama$Species, data = axis_mazama)
