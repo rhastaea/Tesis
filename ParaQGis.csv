@@ -1,4 +1,4 @@
-X;Y;Num_Sitio;Cantidad de Muestreos;Sitio;Station;Data;Setup;Retrieval;Cantidad_de_muestreos;PA_Axis;PA_Canidae;PA_Cingulata;PA_Hydrochoerus;Pa_Leopardus;PA_Mazama;PA_Rhea;PA_Sus;Prop_Axis;Prop_Canidae;Prop_Cingulata;Prop_Hydrochoerus;Prop_Leopardus;Prop_Mazama;Prop_Rhea;Prop_Sus;Frac_Axis;Frac_Canidae;Frac_Cingulata;Frac_Hydrochoerus;Frac_Leopardus;Frac_Mazama;Frac_Rhea;Frac_Sus
+X;Y;Sitio;Cantidad de Muestreos;Sitio(muestreos);Station;Data;Setup;Retrieval;Cantidad_de_muestreos;PA_Axis;PA_Canidae;PA_Cingulata;PA_Hydrochoerus;Pa_Leopardus;PA_Mazama;PA_Rhea;PA_Sus;Prop_Axis;Prop_Canidae;Prop_Cingulata;Prop_Hydrochoerus;Prop_Leopardus;Prop_Mazama;Prop_Rhea;Prop_Sus;Frac_Axis;Frac_Canidae;Frac_Cingulata;Frac_Hydrochoerus;Frac_Leopardus;Frac_Mazama;Frac_Rhea;Frac_Sus
 -58,227845;-31,860396;1;1;1(1);2;nv17_s2_c1;43039;43057;1;1;1;0;1;0;0;0;0;1;1;0;1;0;0;0;0;1-ene;1-ene;;1-ene;;;;
 -58,230216;-31,865035;2;2;2(2);3;ab17_s3_c5;42852;42878;2;1;0;0;1;0;1;0;0;0,5;0;0;0,5;0;0,5;0;0;1-feb;;;1-feb;;1-feb;;
 -58,231766;-31,870116;3;1;3(1);4;ab17_s4_c6;42852;42863;1;1;0;0;0;0;0;0;0;1;0;0;0;0;0;0;0;1-ene;;;;;;;
