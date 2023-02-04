@@ -88,11 +88,11 @@ n <- "n = 316"
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.1,0), xmax = c(24, 7.367),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.65, xmax = 18.283,
+               xmin = 7.367, xmax = 18.283,
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#FFD819"))
 
@@ -128,11 +128,11 @@ n <- "n = 293"
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.1,0), xmax = c(24, 7.367),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.65, xmax = 18.283,
+               xmin = 7.367, xmax = 18.283,
                ymin = 0, ymax = ymax_AeH,  
                alpha = 0.3, fill = "#FFD819"))
 
@@ -168,11 +168,11 @@ n <- "n = 27"
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.1,0), xmax = c(24, 7.367),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.65, xmax = 18.283,
+               xmin = 7.367, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
@@ -208,11 +208,11 @@ n <- "n = 28"
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.1,0), xmax = c(24, 7.367),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.65, xmax = 18.283,
+               xmin = 7.367, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
@@ -248,11 +248,11 @@ n <- "n = 25"
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.1,0), xmax = c(24, 7.367),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.65, xmax = 18.283,
+               xmin = 7.367, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
@@ -288,11 +288,11 @@ n <- "n = 35"
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.1,0), xmax = c(24, 7.367),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.65, xmax = 18.283,
+               xmin = 7.367, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
@@ -328,11 +328,11 @@ n <- "n = 12"
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.1,0), xmax = c(24, 7.367),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.65, xmax = 18.283,
+               xmin = 7.367, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
@@ -368,11 +368,11 @@ n <- "n = 11"
 
 (plot_color <- plot_blanco +
       annotate("rect", #Sombreado gris
-               xmin = c(18.1,0), xmax = c(24, 7.367),
+               xmin = c(17.917,0), xmax = c(24, 7.883),
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#696969") + 
       annotate("rect", #Sombreado amarillo
-               xmin = 6.65, xmax = 18.283,
+               xmin = 7.367, xmax = 18.283,
                ymin = 0, ymax = ymax_resto,  
                alpha = 0.3, fill = "#FFD819"))
 
