@@ -1,7 +1,7 @@
 #### ANÁLISIS DE CÁMARAS TRAMPA ####
 rm(list = ls())
 
-library(camtrapR)
+#library(camtrapR)
 library(lubridate)
 library(overlap)
 library(readr)
@@ -133,8 +133,8 @@ ggdraw(plot_color) +
 especie1 <- registers %>% filter(Species == "canidae")
 
 ymax <- 20
-pngs = canidae
-n = "n = 124"
+#pngs = canidae
+n = "n = 137"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -165,7 +165,7 @@ n = "n = 124"
 ggdraw(plot_color) +
    draw_image(sun, x = 0.505, y = 0.23, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.5, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
+#   draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
    draw_label(n, x = 0.86, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
@@ -336,7 +336,7 @@ especie1 <- registers %>% filter(Species == "leopardus")
 
 ymax <- 20
 pngs = leopardus
-n = "n = 42"
+n = "n = 29"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -364,9 +364,10 @@ n = "n = 42"
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
+windows(500,400)
 ggdraw(plot_color) +
    draw_image(sun, x = 0.505, y = 0.23, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.5, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
+   # draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
    draw_label(n, x = 0.87, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")

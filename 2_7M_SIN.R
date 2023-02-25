@@ -1,7 +1,7 @@
 #### ANÁLISIS DE CÁMARAS TRAMPA ####
 rm(list = ls())
 
-library(camtrapR)
+#library(camtrapR)
 library(lubridate)
 library(overlap)
 library(readr)
@@ -37,7 +37,7 @@ sus <- image_flop(image_read("http://phylopic.org/assets/images/submissions/3d8a
 cingulata <- image_flop(image_read("https://images.phylopic.org/images/5d59b5ce-c1dd-40f6-b295-8d2629b9775e/raster/1024x493.png?build=103"))
 mazama <- image_flop(image_read("http://phylopic.org/assets/images/submissions/b5f40112-0cb8-4994-aa70-28ac97ccb83f.128.png"))
 canidae <- image_flop(image_read("http://phylopic.org/assets/images/submissions/d67d3bf6-3509-4ab6-819a-cd409985347e.128.png"))
-leopardus <- image_flop(image_read("http://phylopic.org/assets/images/submissions/cbc3f93e-0ce3-4e3b-871d-6ac688ed8810.128.png"))
+leopardus <- image_flop(image_read("https://www.phylopic.org/images/2fc7bbbf-8ca7-48fb-8495-d351cd3b1f99"))
 
 #### Hist_rad ####
 registers <- datacam 
@@ -131,7 +131,7 @@ ggdraw(plot_color) +
 especie1 <- registers %>% filter(Species == "canidae")
 
 ymax = 100
-n <- "n = 301"
+n <- "n = 328"
 pngs <- canidae
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
@@ -163,7 +163,7 @@ pngs <- canidae
 ggdraw(plot_color) +
    draw_image(sun, x = 0.515, y = 0.23, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.505, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
+   #draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
    draw_label(n, x = 0.86, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")
 
@@ -334,7 +334,7 @@ especie1 <- registers %>% filter(Species == "leopardus")
 
 ymax = 100
 pngs <- leopardus
-n = "n = 94"
+n = "n = 67"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -363,9 +363,10 @@ n = "n = 94"
                ymin = 0, ymax = ymax, #VARIAR EL VALOR DE YMAX CON LA ESPECIE
                alpha = 0.3, fill = "#FFD819"))
 
+windows(500,400)
 ggdraw(plot_color) +
    draw_image(sun, x = 0.515, y = 0.23, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.505, y = 0.775, width = 0.08, height = 0.07, scale = 0.75) + 
-   draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
+   # draw_image(pngs, x = 0.16, y = 0.84, width = 0.15, height = 0.15) +
    draw_label(n, x = 0.87, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.23, y = 0.15, size = 25, fontface = "bold")

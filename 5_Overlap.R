@@ -19,14 +19,8 @@ library(circular)
 setwd("C:/Users/shalo/OneDrive/Escritorio/Ilán/Tesis/Archivos ahora")
 getwd()
 
-datastation <- read.csv("datastation_final.csv", 
-                        header = TRUE, 
-                        sep = ",")
-
-datacam <- read.csv("datacam_solapamiento.csv", 
-                    header = T, 
-                    sep = ";", 
-                    row.names = 1)
+datastation <- read.csv("datastation_final.csv", header = TRUE, sep = ",")
+datacam <- read.csv("datacam_solapamiento.csv", header = TRUE, sep = ";", row.names = 1)
 datacam$DateTimeOriginal <- as.factor(datacam$DateTimeOriginal)
 
 speciesA_for_activity <- "axis"
@@ -36,7 +30,8 @@ speciesB_for_activity <- "mazama"
 activityOverlap (recordTable   = datacam,
                  speciesA      = speciesA_for_activity,
                  speciesB      = speciesB_for_activity,
-                 writePNG      = FALSE,#Si pongo TRUE me lo guarda en plotDirectory
+                 recordDateTimeCol = "DateTimeOriginal",
+                 recordDateTimeFormat = "dmy HM",
                  plotDirectory = "D:/TESIS/Overlap",
                  plotR         = TRUE,
                  createDir     = FALSE,
@@ -46,11 +41,16 @@ activityOverlap (recordTable   = datacam,
                  linetype      = c(1, 2),
                  olapcol       = "darkgrey",
                  add.rug       = TRUE,
-                 #extend       = "lightgrey",
                  ylim          = c(0, 0.11),
-                 main          = paste("Activity overlap between", 
-                                     speciesA_for_activity, "and", 
-                                     speciesB_for_activity))
+                 writePNG      = FALSE,     #Si pongo TRUE me lo guarda en plotDirectory)
+                 addLegend     = FALSE)
+                 
+
+
+                 #extend       = "lightgrey",
+                 # main          = paste("Activity overlap between", 
+                 #                     speciesA_for_activity, "and", 
+                 #                     speciesB_for_activity))
 
 #### Histograma radial con superposición ####
 sun <- readPNG("sun.png")

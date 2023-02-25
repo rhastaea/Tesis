@@ -180,7 +180,7 @@ ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
    #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
-   draw_image(pngs, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
+   #draw_image(pngs, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
    draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
@@ -380,7 +380,7 @@ ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
    #draw_image(hoja, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
-   draw_image(leopardus, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
+   #draw_image(leopardus, x = 0.19, y = 0.84, width = 0.13, height = 0.13) +
    draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
@@ -509,7 +509,7 @@ ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
    #draw_image(copo, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
-   draw_image(canidae, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   #draw_image(canidae, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
    draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
@@ -805,7 +805,7 @@ ggdraw(plot_color) +
 #### Prive - Canidae ####
 especie1 <- registers_prive %>% filter(Species == "canidae")
 pngs <- canidae
-n <- "n = 31"
+n <- "n = 44"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -838,7 +838,7 @@ ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
    #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
-   draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   #draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
    draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
@@ -1005,7 +1005,7 @@ ggdraw(plot_color) +
 #### Prive - Leopardus ####
 especie1 <- registers_prive %>% filter(Species == "leopardus")
 pngs <- leopardus
-n <- "n = 21"
+n <- "n = 8"
 
 (plot_blanco <- ggplot(especie1, aes(x = decimal)) + 
       geom_histogram(breaks = seq(0, 24),
@@ -1038,7 +1038,7 @@ ggdraw(plot_color) +
    draw_image(sun, x = 0.5, y = 0.21, width = 0.07, height = 0.06) + 
    draw_image(moon, x = 0.495, y = 0.79, width = 0.08, height = 0.07, scale = 0.75) + 
    #draw_image(flor, x = 0.78, y = 0.85, width = 0.1, height = 0.1) +
-   draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
+   #draw_image(pngs, x = 0.19, y = 0.85, width = 0.13, height = 0.13) +
    draw_label(n, x = 0.82, y = 0.15, size = 14, fontface = "bold") + 
    draw_label(estacion, x = 0.25, y = 0.15, size = 25, fontface = "bold")
 
